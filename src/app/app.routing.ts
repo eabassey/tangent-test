@@ -8,6 +8,10 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'auth',
+    loadChildren: 'app/auth/auth.module#AuthModule'
+  },
+  {
     path: 'main',
     loadChildren: 'app/main/main.module#MainModule'
   }
