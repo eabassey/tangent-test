@@ -10,11 +10,11 @@ const routes: Routes = [
   },
   {
     path: 'auth',
-    loadChildren: 'app/auth/auth.module#AuthModule'
+    loadChildren: './auth/auth.module#AuthModule'
   },
   {
     path: 'main',
-    loadChildren: 'app/main/main.module#MainModule'
+    loadChildren: './main/main.module#MainModule'
   },
   {
     path: '**',
