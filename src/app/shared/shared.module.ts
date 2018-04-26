@@ -6,6 +6,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { UserMenuComponent } from './components/user-menu/user-menu.component';
 import { MenuComponent } from './components/menu/menu/menu.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,12 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
     MenuComponent,
     BreadcrumbComponent
   ],
-  imports: [CommonModule],
-  exports: [HeaderComponent, FooterComponent, SidebarComponent]
+  imports: [CommonModule, RouterModule],
+  exports: [
+    HeaderComponent,
+    FooterComponent,
+    SidebarComponent,
+    BreadcrumbComponent
+  ]
 })
 export class SharedModule {}

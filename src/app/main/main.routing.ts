@@ -16,11 +16,13 @@ const routes: Routes = [
       },
       {
         path: 'dashboard',
-        component: DashboardComponent
+        component: DashboardComponent,
+        data: { breadcrumb: 'Dashboard' }
       },
       {
         path: 'employees',
-        component: EmployeesComponent
+        component: EmployeesComponent,
+        data: { breadcrumb: 'Employees' }
       }
     ]
   }
