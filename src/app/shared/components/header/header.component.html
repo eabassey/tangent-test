@@ -1,7 +1,7 @@
-<nav class="navbar box-shadow app-header">
+<nav class="navbar box-shadow app-header fixed-top" [class.logo-visible]="showInfoContent">
   <div class="d-flex flex-column w-100">
     <div id="info-content" class="panel-collapse collapse">
-      <a class="close" data-toggle="collapse" href="#info-content" (click)="showInfoContent = !showInfoContent">
+      <a class="close" data-toggle="collapse" href="#info-content" (click)="showInfoContent = !showInfoContent" [class.show]="showInfoContent">
         <span aria-hidden="true">&times;</span>
       </a>
     </div>
@@ -15,10 +15,11 @@
 
       <div class="top-rigth-icons ml-auto">
         <span class="d-none d-sm-inline-block">
-
+          <!-- Full screen component here-->
         </span>
 
         <span class="d-none d-sm-inline-block">
+          <!-- User dropdown menu component here-->
         </span>
       </div>
 

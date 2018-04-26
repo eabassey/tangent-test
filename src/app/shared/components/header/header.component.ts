@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AppSettingsService } from '../../../app-settings.service';
+import { AppSettings } from '../../../app-settings.model';
 
 @Component({
   selector: 'app-header',
@@ -7,10 +9,11 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+  showInfoContent = false;
+  settings: AppSettings;
+  constructor(public appSettingsService: AppSettingsService) {
+    this.settings = this.appSettingsService.settings;
   }
 
+  ngOnInit() {}
 }
