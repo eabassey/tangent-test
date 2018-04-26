@@ -1,7 +1,13 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AppSettings } from '../../../app-settings.model';
 import { AppSettingsService } from '../../../app-settings.service';
-import { Router, ActivatedRoute, NavigationEnd, ActivatedRouteSnapshot, UrlSegment } from '@angular/router';
+import {
+  Router,
+  ActivatedRoute,
+  NavigationEnd,
+  ActivatedRouteSnapshot,
+  UrlSegment
+} from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -11,7 +17,6 @@ import { Title } from '@angular/platform-browser';
   encapsulation: ViewEncapsulation.None
 })
 export class BreadcrumbComponent {
-
   public settings: AppSettings;
   public pageTitle: string;
   public breadcrumbs: {
@@ -76,7 +81,4 @@ export class BreadcrumbComponent {
       }
     }
   }
-}
-
-
 }
