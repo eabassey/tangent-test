@@ -1,0 +1,17 @@
+@import '../shared/styles/variables';
+
+.wrapper-inner {
+  min-height: 100%;
+  height: auto !important;
+  margin-bottom: -$footer-height;
+  padding: 0 0 $footer-height;
+  // overflow: hidden;
+}
+
+.main-content {
+  width: 100%;
+  padding: 25px;
+  -webkit-box-flex: 1;
+  min-height: calc(100vh - (#{$top-navbar-height} + #{$footer-height}));
+  overflow: hidden;
+}

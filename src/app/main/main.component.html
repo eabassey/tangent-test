@@ -1,16 +1,19 @@
-<div>
+<div class="wrapper-inner">
     <!-- App Header component here-->
+    <app-header></app-header>
 
-    <div>
-        <!--App Sidebar component here -->
+    <div class="d-flex h-100 flex-row">
+        <app-sidebar></app-sidebar>
 
         <!--Main Content-->
-        <h1>I am the main Content here</h1>
-        <router-outlet></router-outlet>
+        <div class="main-content">
+            <app-breadcrumb></app-breadcrumb>
+            <router-outlet></router-outlet>
+        </div>
     </div>
 
-
-    <!-- App footer component here-->
-
-    <!-- Back to top component here-->
 </div>
+
+<app-footer></app-footer>
+
+<!-- Back to top component here-->
