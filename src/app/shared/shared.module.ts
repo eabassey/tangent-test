@@ -5,6 +5,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { UserMenuComponent } from './components/user-menu/user-menu.component';
 import { MenuComponent } from './components/menu/menu/menu.component';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { MenuComponent } from './components/menu/menu/menu.component';
     FooterComponent,
     SidebarComponent,
     UserMenuComponent,
-    MenuComponent
+    MenuComponent,
+    BreadcrumbComponent
   ],
   imports: [CommonModule],
   exports: [HeaderComponent, FooterComponent, SidebarComponent]
