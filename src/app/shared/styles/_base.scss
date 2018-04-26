@@ -30,98 +30,6 @@ input {
     @import 'theme';
   }
 
-  //   &.horizontal-menu {
-  //     .main-content {
-  //       min-height: calc(
-  //         100vh -
-  //           (
-  //             #{$top-navbar-height} + #{$horizontal-menu-height} + #{$footer-height}
-  //           )
-  //       );
-  //     }
-  //     .navbar.app-header .top-navbar .logo {
-  //       width: $sidebar-compact-width - 30px;
-  //     }
-  //     .side-chat {
-  //       top: $top-navbar-height + $horizontal-menu-height + 1px;
-  //       .chat-list {
-  //         padding-bottom: $top-navbar-height + $chat-person-search-media-height +
-  //           $horizontal-menu-height;
-  //       }
-  //       .chat-window .chat-talk-list {
-  //         height: calc(
-  //           100vh -
-  //             (
-  //               #{$top-navbar-height} + #{$chat-window-header-height} + #{$chat-window-footer-height} +
-  //                 #{$horizontal-menu-height}
-  //             )
-  //         );
-  //       }
-  //     }
-  //     &.compact {
-  //       .main-content {
-  //         min-height: calc(
-  //           100vh -
-  //             (
-  //               #{$top-navbar-height} + #{$horizontal-compact-menu-height} + #{$footer-height}
-  //             )
-  //         );
-  //       }
-  //       .side-chat {
-  //         top: $top-navbar-height + $horizontal-compact-menu-height + 1px;
-  //         .chat-list {
-  //           padding-bottom: $top-navbar-height + $chat-person-search-media-height +
-  //             $horizontal-compact-menu-height;
-  //         }
-  //         .chat-window .chat-talk-list {
-  //           height: calc(
-  //             100vh -
-  //               (
-  //                 #{$top-navbar-height} + #{$chat-window-header-height} + #{$chat-window-footer-height} +
-  //                   #{$horizontal-compact-menu-height}
-  //               )
-  //           );
-  //         }
-  //       }
-  //     }
-  //     &.mini {
-  //       .main-content {
-  //         min-height: calc(
-  //           100vh -
-  //             (
-  //               #{$top-navbar-height} + #{$horizontal-mini-menu-height} + #{$footer-height}
-  //             )
-  //         );
-  //       }
-  //       .navbar.app-header .top-navbar .logo {
-  //         width: $sidebar-compact-width - 30px;
-  //         .start {
-  //           display: inline;
-  //         }
-  //       }
-  //       .side-chat {
-  //         top: $top-navbar-height + $horizontal-mini-menu-height + 1px;
-  //         .chat-list {
-  //           padding-bottom: $top-navbar-height + $chat-person-search-media-height +
-  //             $horizontal-mini-menu-height;
-  //         }
-  //         .chat-window .chat-talk-list {
-  //           height: calc(
-  //             100vh -
-  //               (
-  //                 #{$top-navbar-height} + #{$chat-window-header-height} + #{$chat-window-footer-height} +
-  //                   #{$horizontal-mini-menu-height}
-  //               )
-  //           );
-  //         }
-  //       }
-  //       &.menu-hide {
-  //         .navbar.app-header .top-navbar .logo .start {
-  //           display: none;
-  //         }
-  //       }
-  //     }
-  //   }
   &.navbar-fixed {
     .wrapper-inner {
       padding-top: $top-navbar-height;
@@ -235,69 +143,6 @@ input {
       }
     }
   }
-//   &.mini {
-//     .navbar.app-header .top-navbar .logo {
-//       width: $sidebar-mini-width - 15px;
-//       .start {
-//         display: none;
-//       }
-//     }
-//     .sidebar-outer {
-//       width: $sidebar-mini-width;
-//       .logo {
-//         width: $sidebar-mini-width;
-//         .start {
-//           display: none;
-//         }
-//       }
-//       a.menu-item-link {
-//         padding-left: 0 !important;
-//         text-align: center;
-//         span.menu-title {
-//           display: none;
-//         }
-//         i {
-//           display: block;
-//           font-size: 28px;
-//           padding: 4px 12px;
-//         }
-//         b {
-//           position: absolute;
-//           margin: 0;
-//           right: 8px;
-//           top: 20px;
-//         }
-//       }
-//     }
-//     .horizontal-menu-wrapper {
-//       height: $horizontal-mini-menu-height;
-//     }
-//     #navigation .menu li a {
-//       width: 60px;
-//       text-align: center;
-//       span.menu-title {
-//         display: none;
-//       }
-//       i {
-//         margin: 0;
-//         display: inline;
-//         font-size: 28px;
-//       }
-//     }
-//     #navigation .menu li.menu-item-has-children > a:after {
-//       content: none;
-//     }
-//     #navigation ul.menu ul a,
-//     #navigation .menu ul ul a {
-//       width: 60px;
-//       min-width: 60px;
-//       text-align: center;
-//       i {
-//         margin: 0;
-//         display: inline;
-//       }
-//     }
-//   }
   &.menu-hide {
     .navbar.app-header .top-navbar .logo {
       width: 55px !important;
@@ -377,25 +222,10 @@ input {
 .card.fullscreened {
   z-index: 999998 !important;
 }
-// .modal-backdrop{
-// z-index: 999;
-// }
+
 .fa-select {
   font-family: 'FontAwesome', 'Helvetica';
 }
-// @media (max-width: 768px) {
-//   .horizontal-menu {
-//     .logo {
-//       width: 55px !important;
-//       .start {
-//         display: none !important;
-//       }
-//     }
-//   }
-//   .app {
-//     overflow-x: hidden;
-//   }
-// }
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575px) {
   .card-columns {

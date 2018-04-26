@@ -1,3 +1,6 @@
-<div>
-  <router-outlet></router-outlet>
+<div class="app navbar-fixed sidebar-fixed compact" [ngClass]="settings.theme.skin" [class.menu-hide]="!settings.theme.showMenu"
+  [class.menu-hide]="!settings.theme.showMenu">
+  <div class="wrapper">
+    <router-outlet></router-outlet>
+  </div>
 </div>
