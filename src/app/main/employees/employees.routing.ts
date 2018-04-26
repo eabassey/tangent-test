@@ -1,16 +1,23 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EmployeesComponent } from './employees.component';
+import { EmployeesListComponent } from './employees-list/employees-list.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'list',
-    pathMatch: 'prefix'
-  },
-  {
-    path: 'list',
-    component: EmployeesComponent
+    component: EmployeesComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'list',
+        pathMatch: 'prefix'
+      },
+      {
+        path: 'list',
+        component: EmployeesListComponent
+      }
+    ]
   }
 ];
 @NgModule({
