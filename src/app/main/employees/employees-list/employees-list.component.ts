@@ -39,7 +39,7 @@ export class EmployeesListComponent implements OnInit {
           level: 'Senior'
         },
         email: 'donald@gmail.com',
-        gender: 'M',
+        gender: 'F',
         race: 'W'
       }
     ];
