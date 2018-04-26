@@ -5,7 +5,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { UserMenuComponent } from './components/user-menu/user-menu.component';
 import { MenuComponent } from './components/menu/menu/menu.component';
-import { MenuService } from './components/menu/menu.service';
 
 @NgModule({
   declarations: [
@@ -16,7 +15,6 @@ import { MenuService } from './components/menu/menu.service';
     MenuComponent
   ],
   imports: [CommonModule],
-  providers: [MenuService],
   exports: [HeaderComponent, FooterComponent, SidebarComponent]
 })
 export class SharedModule {}
