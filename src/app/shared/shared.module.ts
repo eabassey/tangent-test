@@ -4,9 +4,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { UserMenuComponent } from './components/user-menu/user-menu.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, SidebarComponent, UserMenuComponent],
+  declarations: [HeaderComponent, FooterComponent, SidebarComponent, UserMenuComponent, MenuComponent],
   imports: [CommonModule],
   exports: [HeaderComponent, FooterComponent, SidebarComponent]
 })
