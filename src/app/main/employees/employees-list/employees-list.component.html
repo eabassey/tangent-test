@@ -31,7 +31,11 @@
             <td class="align-middle text-truncate">{{employee.first_name}} {{employee.last_name}}</td>
             <td class="align-middle text-truncate">{{employee.position.level}} {{employee.position.name}}</td>
             <td class="align-middle text-truncate">{{employee.email}}</td>
-            <td class="align-middle text-truncate">{{employee.is_active}}</td>
+            <td class="align-middle">
+              <i class="fa fa-user mr-2" [ngClass]="{ 'text-success': employee.is_active, 
+                                                                                       'text-inverse': !employee.is_active}"
+                placement="bottom" [ngbTooltip]="(employee.is_active) ? 'active' : 'inactive'"></i>
+            </td>
 
             <td class="align-middle text-truncate">{{employee.gender}}</td>
             <td class="align-middle text-truncate">{{employee.race}}</td>

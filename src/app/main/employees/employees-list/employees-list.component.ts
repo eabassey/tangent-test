@@ -33,7 +33,7 @@ export class EmployeesListComponent implements OnInit {
       {
         first_name: 'Donald',
         last_name: 'Trump',
-        is_active: true,
+        is_active: false,
         position: {
           name: 'Software Architect',
           level: 'Senior'
