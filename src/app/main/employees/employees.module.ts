@@ -7,6 +7,7 @@ import { EmployeesListComponent } from './employees-list/employees-list.componen
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PipesModule } from '../../shared/pipes/pipes.module';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [EmployeesComponent, EmployeesListComponent],
@@ -14,7 +15,8 @@ import { PipesModule } from '../../shared/pipes/pipes.module';
     CommonModule,
     RouterModule,
     FormsModule,
-    NgbModule.forRoot(),
+    NgbModule,
+    NgxPaginationModule,
     PipesModule
   ]
 })

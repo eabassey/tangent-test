@@ -9,6 +9,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 export class EmployeesListComponent implements OnInit {
   public employees: any[];
   public searchText: string;
+  public p: any;
 
   constructor() {}
 
@@ -18,6 +19,42 @@ export class EmployeesListComponent implements OnInit {
 
   getEmployees() {
     return [
+      {
+        first_name: 'Kim',
+        last_name: 'Jonyung',
+        is_active: true,
+        position: {
+          name: 'Software Tester',
+          level: 'Senior'
+        },
+        email: 'kim@gmail.com',
+        gender: 'M',
+        race: 'B'
+      },
+      {
+        first_name: 'Kim',
+        last_name: 'Jonyung',
+        is_active: true,
+        position: {
+          name: 'Software Tester',
+          level: 'Senior'
+        },
+        email: 'kim@gmail.com',
+        gender: 'M',
+        race: 'B'
+      },
+      {
+        first_name: 'Kim',
+        last_name: 'Jonyung',
+        is_active: true,
+        position: {
+          name: 'Software Tester',
+          level: 'Senior'
+        },
+        email: 'kim@gmail.com',
+        gender: 'M',
+        race: 'B'
+      },
       {
         first_name: 'Kim',
         last_name: 'Jonyung',
