@@ -1,13 +1,15 @@
-<div>
+<div class="wrapper-inner">
     <!-- App Header component here-->
     <app-header></app-header>
 
-    <div>
+    <div class="d-flex h-100 flex-row">
         <!--App Sidebar component here -->
 
         <!--Main Content-->
-        <h1>I am the main Content here</h1>
-        <router-outlet></router-outlet>
+        <div class="main-content">
+            <h1>I am the main Content here</h1>
+            <router-outlet></router-outlet>
+        </div>
     </div>
 
 
