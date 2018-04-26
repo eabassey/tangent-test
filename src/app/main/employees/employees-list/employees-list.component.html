@@ -27,7 +27,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let employee of employees">
+          <tr *ngFor="let employee of employees | EmployeesSearch: searchText">
             <td class="align-middle text-truncate">{{employee.first_name}} {{employee.last_name}}</td>
             <td class="align-middle text-truncate">{{employee.position.level}} {{employee.position.name}}</td>
             <td class="align-middle text-truncate">{{employee.email}}</td>

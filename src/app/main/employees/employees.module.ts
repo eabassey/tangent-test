@@ -6,9 +6,16 @@ import { EmployeesComponent } from './employees.component';
 import { EmployeesListComponent } from './employees-list/employees-list.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PipesModule } from '../../shared/pipes/pipes.module';
 
 @NgModule({
   declarations: [EmployeesComponent, EmployeesListComponent],
-  imports: [CommonModule, RouterModule, FormsModule, NgbModule.forRoot()]
+  imports: [
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    NgbModule.forRoot(),
+    PipesModule
+  ]
 })
 export class EmployeesModule {}
