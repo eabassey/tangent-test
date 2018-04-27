@@ -11,6 +11,7 @@ import { AuthService } from './services/auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginEffects } from './store/effects/login.effects';
 import { reducers } from './store/reducers';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -19,6 +20,7 @@ import { reducers } from './store/reducers';
     StoreModule.forFeature('auth', reducers),
     EffectsModule.forFeature([LoginEffects]),
     ReactiveFormsModule,
+    NgxSpinnerModule,
     AuthRoutingModule,
     HttpClientModule
   ],
