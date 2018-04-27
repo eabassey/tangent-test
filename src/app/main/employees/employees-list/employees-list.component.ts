@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as employeesActions from '../store/actions/employees.actions';
+import { Observable } from 'rxjs/Observable';
+import { getEmployees } from '../store/selectors/employees.selectors';
 
 @Component({
   selector: 'app-employees-list',
@@ -9,6 +11,7 @@ import * as employeesActions from '../store/actions/employees.actions';
   encapsulation: ViewEncapsulation.None
 })
 export class EmployeesListComponent implements OnInit {
+  employees$: Observable<any>;
   public employees: any[];
   public searchText: string;
   public p: any;
@@ -18,71 +21,6 @@ export class EmployeesListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.employees = this.getEmployees();
-  }
-
-  getEmployees() {
-    return [
-      {
-        first_name: 'Kim',
-        last_name: 'Jonyung',
-        is_active: true,
-        position: {
-          name: 'Software Tester',
-          level: 'Senior'
-        },
-        email: 'kim@gmail.com',
-        gender: 'M',
-        race: 'B'
-      },
-      {
-        first_name: 'Kim',
-        last_name: 'Jonyung',
-        is_active: true,
-        position: {
-          name: 'Software Tester',
-          level: 'Senior'
-        },
-        email: 'kim@gmail.com',
-        gender: 'M',
-        race: 'B'
-      },
-      {
-        first_name: 'Kim',
-        last_name: 'Jonyung',
-        is_active: true,
-        position: {
-          name: 'Software Tester',
-          level: 'Senior'
-        },
-        email: 'kim@gmail.com',
-        gender: 'M',
-        race: 'B'
-      },
-      {
-        first_name: 'Kim',
-        last_name: 'Jonyung',
-        is_active: true,
-        position: {
-          name: 'Software Tester',
-          level: 'Senior'
-        },
-        email: 'kim@gmail.com',
-        gender: 'M',
-        race: 'B'
-      },
-      {
-        first_name: 'Donald',
-        last_name: 'Trump',
-        is_active: false,
-        position: {
-          name: 'Software Architect',
-          level: 'Senior'
-        },
-        email: 'donald@gmail.com',
-        gender: 'F',
-        race: 'W'
-      }
-    ];
+    this.employees$ = this.store.select(getEmployees);
   }
 }

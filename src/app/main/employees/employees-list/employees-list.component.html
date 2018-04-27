@@ -27,8 +27,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let employee of employees | employeesSearch: searchText  | paginate: { itemsPerPage: 6, currentPage: p }">
-            <td class="align-middle text-truncate">{{employee.first_name}} {{employee.last_name}}</td>
+          <tr *ngFor="let employee of (employees$ | async) | employeesSearch: searchText  | paginate: { itemsPerPage: 6, currentPage: p }">
+            <td class="align-middle text-truncate">{{employee.user.first_name}} {{employee.user.last_name}}</td>
             <td class="align-middle text-truncate">{{employee.position.level}} {{employee.position.name}}</td>
             <td class="align-middle text-truncate">{{employee.email}}</td>
             <td class="align-middle">
