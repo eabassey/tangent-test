@@ -13,6 +13,7 @@ import { MainComponent } from './main.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { EmployeesModule } from './employees/employees.module';
 import { SharedModule } from '../shared/shared.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [MainComponent],
@@ -20,6 +21,7 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     PerfectScrollbarModule,
     MainRoutingModule,
+    NgbModule.forRoot(),
     SharedModule,
     DashboardModule,
     EmployeesModule

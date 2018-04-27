@@ -4,5 +4,12 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  urls: {
+    token_endpoint: 'http://staging.tangent.tngnt.co/api-token-auth/',
+    userinfo_endpoint: 'http://staging.tangent.tngnt.co/api/user/me/',
+    employees_api_endpoint: 'http://staging.tangent.tngnt.co/api/employee/',
+    employee_profile_api_endpoint:
+      'http://staging.tangent.tngnt.co/api/employee/me/'
+  }
 };

@@ -1,0 +1,62 @@
+<div class="row mb-1">
+  <div class="col">
+    <div class="input-group mb-3 box-shadow">
+      <div class="input-group-prepend">
+        <span class="input-group-text border-top-0 border-left-0 border-bottom-0">
+          <i class="fa fa-search"></i>
+        </span>
+      </div>
+      <input type="text" [(ngModel)]="searchText" placeholder="Search employee by name..." class="form-control border-0">
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="table-responsive bg-white box-shadow">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Full Name</th>
+            <th>Position</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Gender</th>
+            <th>Race</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee of employees | employeesSearch: searchText  | paginate: { itemsPerPage: 6, currentPage: p }">
+            <td class="align-middle text-truncate">{{employee.first_name}} {{employee.last_name}}</td>
+            <td class="align-middle text-truncate">{{employee.position.level}} {{employee.position.name}}</td>
+            <td class="align-middle text-truncate">{{employee.email}}</td>
+            <td class="align-middle">
+              <i class="fa fa-user mr-2" [ngClass]="{ 'text-success': employee.is_active, 
+                                                                                       'text-inverse': !employee.is_active}"
+                placement="bottom" [ngbTooltip]="(employee.is_active) ? 'active' : 'inactive'"></i>
+            </td>
+
+            <td class="align-middle text-truncate">{{employee.gender | gender}}</td>
+            <td class="align-middle text-truncate">{{employee.race | race }}</td>
+            <td class="align-middle">
+              <div class="btn-group" role="group">
+                <button class="btn btn-secondary btn-sm">
+                  <i class="fa fa-eye"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="bg-white text-center">
+      <pagination-controls autoHide="true" (pageChange)="p=$event" maxSize="3"></pagination-controls>
+    </div>
+  </div>
+</div>

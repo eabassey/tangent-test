@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EmployeesComponent } from './employees/employees.component';
+import { EmployeesListComponent } from './employees/employees-list/employees-list.component';
 
 const routes: Routes = [
   {
@@ -22,7 +23,19 @@ const routes: Routes = [
       {
         path: 'employees',
         component: EmployeesComponent,
-        data: { breadcrumb: 'Employees' }
+        data: { breadcrumb: 'Employees' },
+        children: [
+          {
+            path: '',
+            redirectTo: 'list',
+            pathMatch: 'prefix'
+          },
+          {
+            path: 'list',
+            component: EmployeesListComponent,
+            data: { breadcrumb: 'list' }
+          }
+        ]
       }
     ]
   }
