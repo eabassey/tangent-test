@@ -15,6 +15,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers } from './store/reducers';
 import { EmployeesEffects } from './store/effects/employees.effects';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [EmployeesComponent, EmployeesListComponent],
@@ -24,6 +25,7 @@ import { EmployeesEffects } from './store/effects/employees.effects';
     HttpClientModule,
     StoreModule.forFeature('employees', reducers),
     EffectsModule.forFeature([EmployeesEffects]),
+    NgxSpinnerModule,
     FormsModule,
     NgbModule,
     NgxPaginationModule,
