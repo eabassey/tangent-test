@@ -21,11 +21,19 @@ export class LoginEffects {
       const { username, password } = action.payload;
       return this.authService.login({ username, password });
     }),
-    switchMap(token => {
-      return this.authService.getLoggedInUserInfo(token);
-    }),
-    tap(() => this.router.navigate(['/main'])),
-    map(userInfo => new fromActions.LoginSuccess(userInfo)),
-    catchError(error => of(new fromActions.LoginFail(error)))
+    map(token => new fromActions.UseTokenToAccess(token))
   );
+
+  @Effect()
+  useTokenToAccess$ = this.actions
+    .ofType(fromActions.USE_TOKEN_TO_ACCCESS)
+    .pipe(
+      switchMap((action: fromActions.UseTokenToAccess) => {
+        const token = action.payload;
+        return this.authService.getLoggedInUserInfo(token);
+      }),
+      tap(() => this.router.navigate(['/main'])),
+      map(userInfo => new fromActions.LoginSuccess(userInfo)),
+      catchError(error => of(new fromActions.LoginFail(error)))
+    );
 }
