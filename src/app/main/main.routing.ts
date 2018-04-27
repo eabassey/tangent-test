@@ -4,6 +4,8 @@ import { MainComponent } from './main.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { EmployeesListComponent } from './employees/employees-list/employees-list.component';
+import { UserComponent } from './user/user.component';
+import { UserProfileComponent } from './user/user-profile/user-profile.component';
 
 const routes: Routes = [
   {
@@ -34,6 +36,23 @@ const routes: Routes = [
             path: 'list',
             component: EmployeesListComponent,
             data: { breadcrumb: 'list' }
+          }
+        ]
+      },
+      {
+        path: 'user',
+        component: UserComponent,
+        data: { breadcrumb: 'user' },
+        children: [
+          {
+            path: '',
+            redirectTo: 'profile',
+            pathMatch: 'prefix'
+          },
+          {
+            path: 'profile',
+            component: UserProfileComponent,
+            data: { breadcrumb: 'profile' }
           }
         ]
       }

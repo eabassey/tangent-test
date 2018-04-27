@@ -23,14 +23,6 @@ export class AuthService {
       .pipe(tap(res => (this.token = res.token)));
   }
 
-  getCurrentUser(): Observable<any> {
-    return this.httpClient.get<any>(environment.urls.userinfo_endpoint);
-  }
-
-  get isAuthenticated(): boolean {
-    return !!this.token;
-  }
-
   logout(): void {
     localStorage.removeItem(this.tokenKey);
   }
