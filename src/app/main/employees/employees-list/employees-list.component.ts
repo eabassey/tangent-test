@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Store } from '@ngrx/store';
+import * as employeesActions from '../store/actions/employees.actions';
 
 @Component({
   selector: 'app-employees-list',
@@ -11,7 +13,9 @@ export class EmployeesListComponent implements OnInit {
   public searchText: string;
   public p: any;
 
-  constructor() {}
+  constructor(private store: Store<any>) {
+    store.dispatch(new employeesActions.GetEmployees());
+  }
 
   ngOnInit() {
     this.employees = this.getEmployees();

@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
 import { ErrorsModule } from './errors/errors.module';
 import { AppSettingsService } from './app-settings.service';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +22,7 @@ import { AppSettingsService } from './app-settings.service';
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 10 }),
+    AuthModule,
     AppRoutingModule,
     ErrorsModule,
     TabsModule.forRoot()

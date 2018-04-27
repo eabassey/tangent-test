@@ -14,6 +14,7 @@ import { delay } from 'rxjs/operators';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers } from './store/reducers';
+import { EmployeesEffects } from './store/effects/employees.effects';
 
 @NgModule({
   declarations: [EmployeesComponent, EmployeesListComponent],
@@ -22,7 +23,7 @@ import { reducers } from './store/reducers';
     RouterModule,
     HttpClientModule,
     StoreModule.forFeature('employees', reducers),
-    EffectsModule.forFeature([]),
+    EffectsModule.forFeature([EmployeesEffects]),
     FormsModule,
     NgbModule,
     NgxPaginationModule,

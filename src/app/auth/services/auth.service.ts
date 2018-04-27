@@ -9,6 +9,12 @@ export class AuthService {
   tokenKey = 'token';
   constructor(private httpClient: HttpClient) {}
 
+  get headers() {
+    return {
+      Authorization: `Token ${this.token}`
+    };
+  }
+
   get token(): string {
     return localStorage.getItem(this.tokenKey);
   }
