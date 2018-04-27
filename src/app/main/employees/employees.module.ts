@@ -27,9 +27,9 @@ import { delay } from 'rxjs/operators';
 })
 export class EmployeesModule {
   constructor(private emp: EmployeesService) {
-    this.emp
-      .getEmployees()
-      .pipe(delay(3000))
-      .subscribe(console.log);
+    // this.emp
+    //   .getEmployees()
+    //   .pipe(delay(3000))
+    //   .subscribe(console.log);
   }
 }
