@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs/Observable';
-import { tap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 
 @Injectable()
 export class AuthService {
@@ -26,7 +26,14 @@ export class AuthService {
   login(credentials: { username: string; password: string }): Observable<any> {
     return this.httpClient
       .post(environment.urls.token_endpoint, credentials)
-      .pipe(tap(res => (this.token = res.token)));
+      .pipe(map((res: any) => res.token), tap(token => (this.token = token)));
+  }
+
+  getLoggedInUserInfo(token: string): Observable<any> {
+    const headers = { Authorization: `Token ${token}` };
+    return this.httpClient.get<any>(environment.urls.userinfo_endpoint, {
+      headers
+    });
   }
 
   logout(): void {
