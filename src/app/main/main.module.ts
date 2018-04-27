@@ -14,6 +14,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { EmployeesModule } from './employees/employees.module';
 import { SharedModule } from '../shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [MainComponent],
@@ -24,7 +25,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgbModule.forRoot(),
     SharedModule,
     DashboardModule,
-    EmployeesModule
+    EmployeesModule,
+    UserModule
   ],
   providers: [
     {
