@@ -22,7 +22,7 @@
           <app-user-menu [userInfo]="userInfo$ | async"></app-user-menu>
 
         </span>
-        <a class="mb-1">
+        <a class="mb-1" (click)="logout()" style="cursor: pointer;">
           <i class="fa fa-power-off mr-2"></i>
           Log out
         </a>
