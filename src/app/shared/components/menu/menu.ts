@@ -12,6 +12,5 @@ export const menuItems = [
     false,
     0
   ),
-  new Menu(2, 'Employees', '/main/employees', null, 'users', null, false, 0),
-  new Menu(4, 'Logout', '/login', null, 'power-off', null, false, 0)
+  new Menu(2, 'Employees', '/main/employees', null, 'users', null, false, 0)
 ];
