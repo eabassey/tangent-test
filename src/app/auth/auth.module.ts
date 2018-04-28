@@ -13,6 +13,7 @@ import { LoginEffects } from './store/effects/login.effects';
 import { reducers } from './store/reducers';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { NoAuthGuard } from './guards/no-auth.guard';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -25,6 +26,6 @@ import { NoAuthGuard } from './guards/no-auth.guard';
     AuthRoutingModule,
     HttpClientModule
   ],
-  providers: [AuthService, NoAuthGuard]
+  providers: [AuthService, NoAuthGuard, AuthGuard]
 })
 export class AuthModule {}

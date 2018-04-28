@@ -12,7 +12,7 @@ import {
 } from '@angular/router';
 
 @Injectable()
-export class NoAuthGuard implements CanActivate {
+export class AuthGuard implements CanActivate {
   constructor(
     private store: Store<any>,
     private router: Router,
@@ -24,10 +24,10 @@ export class NoAuthGuard implements CanActivate {
   ): Observable<boolean> {
     return this.store.select(getUserInfo).pipe(
       map(userInfo => {
-        if (this.authService.token) {
-          this.router.navigate(['/main']);
+        if (!this.authService.token) {
+          this.router.navigate(['/auth']);
         }
-        return !userInfo || !this.authService.token;
+        return !!userInfo || !!this.authService.token;
       })
     );
   }
