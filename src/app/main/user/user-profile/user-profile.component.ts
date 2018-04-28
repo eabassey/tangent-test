@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { GetUserProfile } from '../store/actions/user-profile.actions';
 
 @Component({
   selector: 'app-user-profile',
@@ -7,10 +9,9 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class UserProfileComponent implements OnInit {
-
-  constructor() { }
+  constructor(private store: Store<any>) {}
 
   ngOnInit() {
+    this.store.dispatch(new GetUserProfile());
   }
-
 }
