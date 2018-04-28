@@ -1,4 +1,11 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
+import { Store } from '@ngrx/store';
+import * as employeesActions from '../store/actions/employees.actions';
+import { Observable } from 'rxjs/Observable';
+import { getEmployees } from '../store/selectors/employees.selectors';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { tap } from 'rxjs/operators';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-employees-list',
@@ -6,79 +13,27 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   styleUrls: ['./employees-list.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class EmployeesListComponent implements OnInit {
+export class EmployeesListComponent implements OnInit, OnDestroy {
+  employeesSubscription: Subscription;
   public employees: any[];
   public searchText: string;
   public p: any;
 
-  constructor() {}
-
-  ngOnInit() {
-    this.employees = this.getEmployees();
+  constructor(private store: Store<any>, private spinner: NgxSpinnerService) {
+    store.dispatch(new employeesActions.GetEmployees());
   }
 
-  getEmployees() {
-    return [
-      {
-        first_name: 'Kim',
-        last_name: 'Jonyung',
-        is_active: true,
-        position: {
-          name: 'Software Tester',
-          level: 'Senior'
-        },
-        email: 'kim@gmail.com',
-        gender: 'M',
-        race: 'B'
-      },
-      {
-        first_name: 'Kim',
-        last_name: 'Jonyung',
-        is_active: true,
-        position: {
-          name: 'Software Tester',
-          level: 'Senior'
-        },
-        email: 'kim@gmail.com',
-        gender: 'M',
-        race: 'B'
-      },
-      {
-        first_name: 'Kim',
-        last_name: 'Jonyung',
-        is_active: true,
-        position: {
-          name: 'Software Tester',
-          level: 'Senior'
-        },
-        email: 'kim@gmail.com',
-        gender: 'M',
-        race: 'B'
-      },
-      {
-        first_name: 'Kim',
-        last_name: 'Jonyung',
-        is_active: true,
-        position: {
-          name: 'Software Tester',
-          level: 'Senior'
-        },
-        email: 'kim@gmail.com',
-        gender: 'M',
-        race: 'B'
-      },
-      {
-        first_name: 'Donald',
-        last_name: 'Trump',
-        is_active: false,
-        position: {
-          name: 'Software Architect',
-          level: 'Senior'
-        },
-        email: 'donald@gmail.com',
-        gender: 'F',
-        race: 'W'
-      }
-    ];
+  ngOnInit() {
+    this.spinner.show();
+    this.employeesSubscription = this.store
+      .select(getEmployees)
+      .subscribe(employees => {
+        this.employees = employees;
+        this.spinner.hide();
+      });
+  }
+
+  ngOnDestroy() {
+    this.employeesSubscription.unsubscribe();
   }
 }

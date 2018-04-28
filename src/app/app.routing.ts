@@ -5,12 +5,8 @@ import { NotFoundComponent } from './errors/not-found/not-found.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'main',
+    redirectTo: 'auth',
     pathMatch: 'full'
-  },
-  {
-    path: 'auth',
-    loadChildren: './auth/auth.module#AuthModule'
   },
   {
     path: 'main',

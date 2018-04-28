@@ -8,9 +8,9 @@ import { environment } from '../../../../environments/environment';
 export class UserService {
   constructor(private httpClient: HttpClient) {}
 
-  getCurrentUser(): Observable<any> {
-    return this.httpClient.get<any>(environment.urls.userinfo_endpoint);
-  }
+  // getCurrentUser(): Observable<any> {
+  //   return this.httpClient.get<any>(environment.urls.userinfo_endpoint);
+  // }
 
   getUserProfile(): Observable<any> {
     return this.httpClient.get<any>(

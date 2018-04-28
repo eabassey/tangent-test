@@ -4,13 +4,18 @@ import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'prefix'
-  },
-  {
-    path: 'login',
-    component: LoginComponent
+    path: 'auth',
+    children: [
+      {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'prefix'
+      },
+      {
+        path: 'login',
+        component: LoginComponent
+      }
+    ]
   }
 ];
 @NgModule({

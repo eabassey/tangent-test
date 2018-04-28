@@ -11,6 +11,11 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { EmployeesService } from './services/employees.service';
 import { HttpClientModule } from '@angular/common/http';
 import { delay } from 'rxjs/operators';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { reducers } from './store/reducers';
+import { EmployeesEffects } from './store/effects/employees.effects';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [EmployeesComponent, EmployeesListComponent],
@@ -18,6 +23,9 @@ import { delay } from 'rxjs/operators';
     CommonModule,
     RouterModule,
     HttpClientModule,
+    StoreModule.forFeature('employees', reducers),
+    EffectsModule.forFeature([EmployeesEffects]),
+    NgxSpinnerModule,
     FormsModule,
     NgbModule,
     NgxPaginationModule,
@@ -25,11 +33,4 @@ import { delay } from 'rxjs/operators';
   ],
   providers: [EmployeesService]
 })
-export class EmployeesModule {
-  constructor(private emp: EmployeesService) {
-    // this.emp
-    //   .getEmployees()
-    //   .pipe(delay(3000))
-    //   .subscribe(console.log);
-  }
-}
+export class EmployeesModule {}
