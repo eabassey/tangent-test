@@ -1,4 +1,11 @@
-import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  Input,
+  EventEmitter,
+  Output
+} from '@angular/core';
 
 @Component({
   selector: 'app-user-menu',
@@ -8,7 +15,12 @@ import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 })
 export class UserMenuComponent implements OnInit {
   @Input() userInfo;
+  @Output() onViewProfile = new EventEmitter<any>();
   constructor() {}
 
   ngOnInit() {}
+
+  viewProfile() {
+    this.onViewProfile.emit();
+  }
 }
