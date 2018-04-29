@@ -19,7 +19,7 @@
         </span>
 
         <span class="d-none d-sm-inline-block">
-          <app-user-menu [userInfo]="userInfo$ | async"></app-user-menu>
+          <app-user-menu (onViewProfile)="viewProfile()" [userInfo]="userInfo$ | async"></app-user-menu>
 
         </span>
         <a class="mb-1" (click)="logout()" style="cursor: pointer;">

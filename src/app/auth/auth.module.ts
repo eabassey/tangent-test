@@ -12,6 +12,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginEffects } from './store/effects/login.effects';
 import { reducers } from './store/reducers';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { NoAuthGuard } from './guards/no-auth.guard';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -24,6 +26,6 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     AuthRoutingModule,
     HttpClientModule
   ],
-  providers: [AuthService]
+  providers: [AuthService, NoAuthGuard, AuthGuard]
 })
 export class AuthModule {}

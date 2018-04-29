@@ -6,6 +6,7 @@ import { EmployeesComponent } from './employees/employees.component';
 import { EmployeesListComponent } from './employees/employees-list/employees-list.component';
 import { UserComponent } from './user/user.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
+import { AuthGuard } from '../auth/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -20,12 +21,14 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
-        data: { breadcrumb: 'Dashboard' }
+        data: { breadcrumb: 'Dashboard' },
+        canActivate: [AuthGuard]
       },
       {
         path: 'employees',
         component: EmployeesComponent,
         data: { breadcrumb: 'Employees' },
+        canActivate: [AuthGuard],
         children: [
           {
             path: '',
@@ -43,6 +46,7 @@ const routes: Routes = [
         path: 'user',
         component: UserComponent,
         data: { breadcrumb: 'user' },
+        canActivate: [AuthGuard],
         children: [
           {
             path: '',

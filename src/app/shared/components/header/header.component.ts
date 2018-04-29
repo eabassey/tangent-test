@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import { getUserInfo } from '../../../auth/store/selectors/login.selectors';
 import { AuthService } from '../../../auth/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -19,13 +20,18 @@ export class HeaderComponent implements OnInit {
   constructor(
     public appSettingsService: AppSettingsService,
     private store: Store<any>,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
     this.settings = this.appSettingsService.settings;
   }
 
   ngOnInit() {
     this.userInfo$ = this.store.select(getUserInfo);
+  }
+
+  viewProfile() {
+    this.router.navigate(['/main/user/profile']);
   }
 
   logout() {
