@@ -22,11 +22,10 @@ export class HeaderComponent implements OnInit {
     private store: Store<any>,
     private authService: AuthService,
     private router: Router
-  ) {
-    this.settings = this.appSettingsService.settings;
-  }
+  ) {}
 
   ngOnInit() {
+    this.settings = this.appSettingsService.settings;
     this.userInfo$ = this.store.select(getUserInfo);
   }
 

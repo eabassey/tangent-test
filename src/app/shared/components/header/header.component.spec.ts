@@ -1,25 +1,40 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import test, { App, expectThat, Fixture } from 'ng-test-runner';
 import { HeaderComponent } from './header.component';
+import { SharedModule } from '../../shared.module';
+import { AppSettingsService } from '../../../app-settings.service';
+import { TestBed } from '@angular/core/testing';
+import { StoreModule } from '@ngrx/store';
+import { AuthModule } from '../../../auth/auth.module';
+import { RouterTestingModule } from '@angular/router/testing';
+import { EffectsModule } from '@ngrx/effects';
+import { AppModule } from '../../../app.module';
 
-describe('HeaderComponent', () => {
-  let component: HeaderComponent;
-  let fixture: ComponentFixture<HeaderComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ]
-    })
-    .compileComponents();
-  }));
+describe('Header Component', () => {
+  let app: App;
+  let comp: Fixture;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HeaderComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    TestBed.configureTestingModule({
+      imports: [
+        StoreModule.forRoot({}),
+        RouterTestingModule,
+        EffectsModule.forRoot([])
+      ],
+      providers: [AppSettingsService]
+    });
+    app = test(SharedModule, AuthModule);
+    comp = app.run(HeaderComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should have a nav element', () => {
+    comp.verify(expectThat.element('nav').exists());
+  });
+
+  it('should have the user-menu component as child', () => {
+    comp.verify(expectThat.element('app-user-menu').exists());
+  });
+
+  it('should have an achor element with a Logout text', () => {
+    comp.verify(expectThat.textOf('a.mb-1').isEqualTo('Logout'));
   });
 });

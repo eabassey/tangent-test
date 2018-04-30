@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit {
 
   public onSubmit(values: { username: string; password: string }): void {
     this.spinner.show();
-    console.log(values);
     this.store.dispatch(new fromLoginActions.Login(values));
     // this.spinner.hide();
   }

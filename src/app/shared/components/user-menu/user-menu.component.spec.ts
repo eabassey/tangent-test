@@ -1,25 +1,30 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import test, { App, expectThat, Fixture } from 'ng-test-runner';
 import { UserMenuComponent } from './user-menu.component';
+import { SharedModule } from '../../shared.module';
+import { TestBed } from '@angular/core/testing';
+import { AppSettingsService } from '../../../app-settings.service';
+import { RouterTestingModule } from '@angular/router/testing';
 
-describe('UserMenuComponent', () => {
-  let component: UserMenuComponent;
-  let fixture: ComponentFixture<UserMenuComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ UserMenuComponent ]
-    })
-    .compileComponents();
-  }));
+describe('UserMenu Component', () => {
+  let app: App;
+  let comp: Fixture;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UserMenuComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
+      providers: [AppSettingsService]
+    });
+    app = test(SharedModule);
+    comp = app.run(UserMenuComponent, {
+      userInfo: { first_name: 'Danny', last_name: 'Wane' }
+    });
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should exist', () => {
+    comp.verify(expectThat.element('div.d-inline-block').exists());
+  });
+
+  it('should display full name of user', () => {
+    comp.verify(expectThat.textOf('div a').isEqualTo('Danny Wane'));
   });
 });
