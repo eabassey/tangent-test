@@ -1,7 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { AppSettings } from '../../../app-settings.model';
 import { MenuService } from '../menu/menu.service';
-import { AppSettingsService } from '../../../app-settings.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,13 +9,8 @@ import { AppSettingsService } from '../../../app-settings.service';
   encapsulation: ViewEncapsulation.None
 })
 export class SidebarComponent implements OnInit {
-  public settings: AppSettings;
   public menuItems: any[];
-  constructor(
-    public appSettingsService: AppSettingsService,
-    public menuService: MenuService
-  ) {
-    this.settings = this.appSettingsService.settings;
+  constructor(public menuService: MenuService) {
     this.menuItems = this.menuService.getMenuItems();
   }
 
