@@ -1,7 +1,6 @@
 import test, { App, expectThat, Fixture } from 'ng-test-runner';
 import { HeaderComponent } from './header.component';
 import { SharedModule } from '../../shared.module';
-import { AppSettingsService } from '../../../app-settings.service';
 import { TestBed } from '@angular/core/testing';
 import { StoreModule } from '@ngrx/store';
 import { AuthModule } from '../../../auth/auth.module';
@@ -19,8 +18,7 @@ describe('Header Component', () => {
         StoreModule.forRoot({}),
         RouterTestingModule,
         EffectsModule.forRoot([])
-      ],
-      providers: [AppSettingsService]
+      ]
     });
     app = test(SharedModule, AuthModule);
     comp = app.run(HeaderComponent);

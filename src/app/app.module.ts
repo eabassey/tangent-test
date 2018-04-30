@@ -11,7 +11,6 @@ import { AppRoutingModule } from './app.routing';
 
 import { AppComponent } from './app.component';
 import { ErrorsModule } from './errors/errors.module';
-import { AppSettingsService } from './app-settings.service';
 import { AuthModule } from './auth/auth.module';
 import { reducers } from './store/reducers';
 
@@ -28,7 +27,6 @@ import { reducers } from './store/reducers';
     ErrorsModule,
     TabsModule.forRoot()
   ],
-  providers: [AppSettingsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
