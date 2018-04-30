@@ -9,6 +9,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { reducers } from './store/reducers';
 import { UserProfileEffects } from './store/effects/user-profile.effects';
 import { UserService } from './services/user.service';
+import { PipesModule } from '../../shared/pipes/pipes.module';
 
 @NgModule({
   declarations: [UserComponent, UserProfileComponent],
@@ -17,6 +18,7 @@ import { UserService } from './services/user.service';
     RouterModule,
     StoreModule.forFeature('user', reducers),
     EffectsModule.forFeature([UserProfileEffects]),
+    PipesModule,
     TabsModule
   ],
   providers: [UserService]

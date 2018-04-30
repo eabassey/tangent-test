@@ -9,25 +9,27 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app.routing';
 
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+
 import { AppComponent } from './app.component';
 import { ErrorsModule } from './errors/errors.module';
-import { AppSettingsService } from './app-settings.service';
 import { AuthModule } from './auth/auth.module';
+import { reducers } from './store/reducers';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot(reducers),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 10 }),
+    Ng4LoadingSpinnerModule.forRoot(),
     AuthModule,
     AppRoutingModule,
     ErrorsModule,
     TabsModule.forRoot()
   ],
-  providers: [AppSettingsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

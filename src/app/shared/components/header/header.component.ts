@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { AppSettingsService } from '../../../app-settings.service';
-import { AppSettings } from '../../../app-settings.model';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import { getUserInfo } from '../../../auth/store/selectors/login.selectors';
 import { AuthService } from '../../../auth/services/auth.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
+import { getAppSettings } from '../../../store/selectors/app-settings.selectors';
 
 @Component({
   selector: 'app-header',
@@ -13,19 +13,21 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   userInfo$: Observable<any>;
   showInfoContent = false;
-  settings: AppSettings;
+  settings;
+  settingsSubscription: Subscription;
   constructor(
-    public appSettingsService: AppSettingsService,
     private store: Store<any>,
     private authService: AuthService,
     private router: Router
   ) {}
 
   ngOnInit() {
-    this.settings = this.appSettingsService.settings;
+    this.settingsSubscription = this.store
+      .select(getAppSettings)
+      .subscribe(settings => (this.settings = settings));
     this.userInfo$ = this.store.select(getUserInfo);
   }
 
@@ -35,5 +37,9 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+  }
+
+  ngOnDestroy() {
+    this.settingsSubscription.unsubscribe();
   }
 }

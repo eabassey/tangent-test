@@ -2,11 +2,14 @@ import {
   Component,
   ViewEncapsulation,
   HostListener,
-  OnInit
+  OnInit,
+  OnDestroy
 } from '@angular/core';
-import { AppSettings } from '../app-settings.model';
-import { AppSettingsService } from '../app-settings.service';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { HideMenu, ShowMenu } from '../store/actions/app-settings.actions';
+import { getShowMenu } from '../store/selectors/app-settings.selectors';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-main',
@@ -14,39 +17,30 @@ import { Router } from '@angular/router';
   styleUrls: ['main.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, OnDestroy {
   public showMenu = false;
-
-  public settings: AppSettings;
-  constructor(
-    public appSettingsService: AppSettingsService,
-    public router: Router
-  ) {
-    this.settings = this.appSettingsService.settings;
-  }
+  settingsSubscription: Subscription;
+  constructor(public router: Router, private store: Store<any>) {}
 
   ngOnInit() {
     if (window.innerWidth <= 768) {
-      this.settings.theme.showMenu = false;
+      this.store.dispatch(new HideMenu());
     }
-    this.showMenu = this.settings.theme.showMenu;
+    this.settingsSubscription = this.store
+      .select(getShowMenu)
+      .subscribe(showMenu => (this.showMenu = showMenu));
   }
 
   @HostListener('window:resize')
   public onWindowResize(): void {
-    const showMenu = !this._showMenu();
-
-    if (this.showMenu !== showMenu) {
-      this.showMenuStateChange(showMenu);
+    if (window.innerWidth <= 768) {
+      this.store.dispatch(new HideMenu());
+    } else {
+      this.store.dispatch(new ShowMenu());
     }
-    this.showMenu = showMenu;
   }
 
-  public showMenuStateChange(showMenu: boolean): void {
-    this.settings.theme.showMenu = showMenu;
-  }
-
-  private _showMenu(): boolean {
-    return window.innerWidth <= 768;
+  ngOnDestroy() {
+    this.settingsSubscription.unsubscribe();
   }
 }

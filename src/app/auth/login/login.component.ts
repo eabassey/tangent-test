@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import * as fromLoginActions from '../store/actions/login.actions';
 import { Store } from '@ngrx/store';
-import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -17,8 +16,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private store: Store<any>,
-    private spinner: NgxSpinnerService
+    private store: Store<any>
   ) {}
 
   ngOnInit() {
@@ -29,8 +27,6 @@ export class LoginComponent implements OnInit {
   }
 
   public onSubmit(values: { username: string; password: string }): void {
-    this.spinner.show();
     this.store.dispatch(new fromLoginActions.Login(values));
-    // this.spinner.hide();
   }
 }

@@ -16,7 +16,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": ["styles.scss"],
-      "scripts": ["../node_modules/jquery/dist/jquery.min.js"],
+      "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

@@ -2,7 +2,6 @@ import test, { App, expectThat, Fixture } from 'ng-test-runner';
 import { UserMenuComponent } from './user-menu.component';
 import { SharedModule } from '../../shared.module';
 import { TestBed } from '@angular/core/testing';
-import { AppSettingsService } from '../../../app-settings.service';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('UserMenu Component', () => {
@@ -11,8 +10,7 @@ describe('UserMenu Component', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
-      providers: [AppSettingsService]
+      imports: [RouterTestingModule]
     });
     app = test(SharedModule);
     comp = app.run(UserMenuComponent, {

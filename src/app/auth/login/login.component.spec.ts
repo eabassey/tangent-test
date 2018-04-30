@@ -15,6 +15,7 @@ import { StoreModule } from '@ngrx/store';
 import { RouterTestingModule } from '@angular/router/testing';
 import { EffectsModule } from '@ngrx/effects';
 import { environment } from '../../../environments/environment';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 describe('Login Component', () => {
   let app: App;
@@ -27,7 +28,8 @@ describe('Login Component', () => {
         StoreModule.forRoot({}),
         RouterTestingModule,
         EffectsModule.forRoot([])
-      ]
+      ],
+      providers: [Ng4LoadingSpinnerService]
     });
     app = test(AuthModule);
     comp = app.run(LoginComponent);

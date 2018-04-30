@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmployeesComponent } from './employees.component';
 import { EmployeesListComponent } from './employees-list/employees-list.component';
 
@@ -15,7 +15,6 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers } from './store/reducers';
 import { EmployeesEffects } from './store/effects/employees.effects';
-import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [EmployeesComponent, EmployeesListComponent],
@@ -25,7 +24,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     HttpClientModule,
     StoreModule.forFeature('employees', reducers),
     EffectsModule.forFeature([EmployeesEffects]),
-    NgxSpinnerModule,
+    ReactiveFormsModule,
     FormsModule,
     NgbModule,
     NgxPaginationModule,
