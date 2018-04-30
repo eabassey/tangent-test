@@ -7,6 +7,7 @@ import { AuthModule } from '../../../auth/auth.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { EffectsModule } from '@ngrx/effects';
 import { AppModule } from '../../../app.module';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 describe('Header Component', () => {
   let app: App;
@@ -18,7 +19,8 @@ describe('Header Component', () => {
         StoreModule.forRoot({}),
         RouterTestingModule,
         EffectsModule.forRoot([])
-      ]
+      ],
+      providers: [Ng4LoadingSpinnerService]
     });
     app = test(SharedModule, AuthModule);
     comp = app.run(HeaderComponent);
