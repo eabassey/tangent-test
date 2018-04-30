@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { GetEmployees } from '../employees/store/actions/employees.actions';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,10 +9,9 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent implements OnInit {
-
-  constructor() { }
+  constructor(private store: Store<any>) {}
 
   ngOnInit() {
+    this.store.dispatch(new GetEmployees());
   }
-
 }

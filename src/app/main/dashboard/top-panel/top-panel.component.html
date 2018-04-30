@@ -1,21 +1,21 @@
 <div class="row">
   <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 pl-2 pr-2 mb-4">
     <div class="w-100 h-100p">
-      <ngx-charts-number-card [scheme]="allEmployeesBgColor" [textColor]="'#fff'" [innerPadding]="0" [results]="allEmployees" [labelFormatting]="infoLabelFormat"
-        (select)="onSelect($event)">
-      </ngx-charts-number-card>
-    </div>
-  </div>
-  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 pl-2 pr-2 mb-4">
-    <div class="w-100 h-100p">
-      <ngx-charts-number-card [scheme]="staffEmployeesBgColor" [textColor]="'#fff'" [innerPadding]="0" [results]="staffEmployees"
+      <ngx-charts-number-card [scheme]="allEmployeesBgColor" [textColor]="'#fff'" [innerPadding]="0" [results]="allEmployees$ | async"
         [labelFormatting]="infoLabelFormat" (select)="onSelect($event)">
       </ngx-charts-number-card>
     </div>
   </div>
   <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 pl-2 pr-2 mb-4">
     <div class="w-100 h-100p">
-      <ngx-charts-number-card [scheme]="birthDaysThisMonthBgColor" [textColor]="'#fff'" [innerPadding]="0" [results]="birthDaysThisMonth"
+      <ngx-charts-number-card [scheme]="staffEmployeesBgColor" [textColor]="'#fff'" [innerPadding]="0" [results]="staffEmployees$ | async"
+        [labelFormatting]="infoLabelFormat" (select)="onSelect($event)">
+      </ngx-charts-number-card>
+    </div>
+  </div>
+  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 pl-2 pr-2 mb-4">
+    <div class="w-100 h-100p">
+      <ngx-charts-number-card [scheme]="birthDaysThisMonthBgColor" [textColor]="'#fff'" [innerPadding]="0" [results]="birthDaysThisMonth$ | async"
         [labelFormatting]="infoLabelFormat" (select)="onSelect($event)">
       </ngx-charts-number-card>
     </div>

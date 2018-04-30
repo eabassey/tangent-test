@@ -1,4 +1,11 @@
-import { Component, DoCheck, ViewEncapsulation } from '@angular/core';
+import { Component, DoCheck, ViewEncapsulation, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import {
+  geAllEmployeesCount,
+  geStaffEmployeesCount,
+  geBirthdayEmployeesCount
+} from '../store/selectors/top-panel.selectors';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-top-panel',
@@ -6,15 +13,29 @@ import { Component, DoCheck, ViewEncapsulation } from '@angular/core';
   styleUrls: ['./top-panel.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class TopPanelComponent {
-  public allEmployees = [{ name: 'All Employees', value: 21 }];
+export class TopPanelComponent implements OnInit {
+  public allEmployees$;
   public allEmployeesBgColor = { domain: ['#F47B00'] };
 
-  public staffEmployees = [{ name: 'Staff Employees', value: 789 }];
+  public staffEmployees$;
   public staffEmployeesBgColor = { domain: ['#2F3E9E'] };
 
-  public birthDaysThisMonth = [{ name: 'Birthdays This Month', value: 7 }];
+  public birthDaysThisMonth$;
   public birthDaysThisMonthBgColor = { domain: ['#606060'] };
+  constructor(private store: Store<any>) {}
+  ngOnInit() {
+    this.allEmployees$ = this.store
+      .select(geAllEmployeesCount)
+      .pipe(map(num => [{ name: 'All Employees', value: num }]));
+
+    this.staffEmployees$ = this.store
+      .select(geStaffEmployeesCount)
+      .pipe(map(num => [{ name: 'Staff Employees', value: num }]));
+
+    this.birthDaysThisMonth$ = this.store
+      .select(geBirthdayEmployeesCount)
+      .pipe(map(num => [{ name: 'Birthdays This Month', value: num }]));
+  }
 
   public infoLabelFormat(c): string {
     switch (c.data.name) {
