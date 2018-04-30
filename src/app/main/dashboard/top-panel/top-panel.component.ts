@@ -14,14 +14,14 @@ import { map } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None
 })
 export class TopPanelComponent implements OnInit {
-  public allEmployees$;
-  public allEmployeesBgColor = { domain: ['#F47B00'] };
+  allEmployees$;
+  allEmployeesBgColor = { domain: ['#F47B00'] };
 
-  public staffEmployees$;
-  public staffEmployeesBgColor = { domain: ['#2F3E9E'] };
+  staffEmployees$;
+  staffEmployeesBgColor = { domain: ['#2F3E9E'] };
 
-  public birthDaysThisMonth$;
-  public birthDaysThisMonthBgColor = { domain: ['#606060'] };
+  birthDaysThisMonth$;
+  birthDaysThisMonthBgColor = { domain: ['#606060'] };
   constructor(private store: Store<any>) {}
   ngOnInit() {
     this.allEmployees$ = this.store
@@ -37,7 +37,7 @@ export class TopPanelComponent implements OnInit {
       .pipe(map(num => [{ name: 'Birthdays This Month', value: num }]));
   }
 
-  public infoLabelFormat(c): string {
+  infoLabelFormat(c): string {
     switch (c.data.name) {
       case 'All Employees':
         return `<i class="fa fa-users mr-2"></i>${c.label}`;
@@ -50,7 +50,11 @@ export class TopPanelComponent implements OnInit {
     }
   }
 
-  public onSelect(event) {
+  onSelect(event) {
     console.log(event);
+  }
+
+  displayAllEmployees() {
+    console.log('event');
   }
 }

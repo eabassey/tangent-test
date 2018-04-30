@@ -9,6 +9,8 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { TopPanelEffects } from './store/effects/top-panel.effects';
 import { reducers } from './store/reducers';
+import { PipesModule } from '../../shared/pipes/pipes.module';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [DashboardComponent, TopPanelComponent, BottomPanelComponent],
@@ -16,6 +18,8 @@ import { reducers } from './store/reducers';
     CommonModule,
     NgxChartsModule,
     PerfectScrollbarModule,
+    PipesModule,
+    NgxPaginationModule,
     StoreModule.forFeature('dashboard', reducers),
     EffectsModule.forFeature([TopPanelEffects])
   ]
