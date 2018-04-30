@@ -1,5 +1,4 @@
 import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
-import { AppSettings } from './app-settings.model';
 import { Store } from '@ngrx/store';
 import { AuthService } from './auth/services/auth.service';
 import * as fromLoginActions from './auth/store/actions/login.actions';

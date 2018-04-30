@@ -1,6 +1,4 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { AppSettings } from '../../../app-settings.model';
-import { AppSettingsService } from '../../../app-settings.service';
 import {
   Router,
   ActivatedRoute,
@@ -8,7 +6,6 @@ import {
   ActivatedRouteSnapshot,
   UrlSegment
 } from '@angular/router';
-import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-breadcrumb',
@@ -17,20 +14,13 @@ import { Title } from '@angular/platform-browser';
   encapsulation: ViewEncapsulation.None
 })
 export class BreadcrumbComponent {
-  public settings: AppSettings;
   public pageTitle: string;
   public breadcrumbs: {
     name: string;
     url: string;
   }[] = [];
 
-  constructor(
-    public appSettingsService: AppSettingsService,
-    public router: Router,
-    public activatedRoute: ActivatedRoute,
-    public title: Title
-  ) {
-    this.settings = this.appSettingsService.settings;
+  constructor(public router: Router, public activatedRoute: ActivatedRoute) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.breadcrumbs = [];
@@ -39,7 +29,6 @@ export class BreadcrumbComponent {
         this.breadcrumbs.forEach(breadcrumb => {
           this.pageTitle += ' > ' + breadcrumb.name;
         });
-        this.title.setTitle(this.settings.name + this.pageTitle);
       }
     });
   }

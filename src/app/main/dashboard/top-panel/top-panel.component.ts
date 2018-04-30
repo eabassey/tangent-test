@@ -1,6 +1,4 @@
 import { Component, DoCheck, ViewEncapsulation } from '@angular/core';
-import { AppSettings } from '../../../app-settings.model';
-import { AppSettingsService } from '../../../app-settings.service';
 
 @Component({
   selector: 'app-top-panel',
