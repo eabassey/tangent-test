@@ -8,8 +8,11 @@ import {
 } from '@angular/core';
 import { MenuService } from '../menu.service';
 import { Router, NavigationEnd } from '@angular/router';
-import { AppSettingsService } from '../../../../app-settings.service';
-import { AppSettings } from '../../../../app-settings.model';
+import { Subscription } from 'rxjs/Subscription';
+import { Store } from '@ngrx/store';
+import { getAppSettings } from '../../../../store/selectors/app-settings.selectors';
+import { OnDestroy } from '@angular/core';
+import { HideMenu } from '../../../../store/actions/app-settings.actions';
 
 @Component({
   selector: 'app-menu',
@@ -18,24 +21,27 @@ import { AppSettings } from '../../../../app-settings.model';
   providers: [MenuService],
   encapsulation: ViewEncapsulation.None
 })
-export class MenuComponent implements OnInit, AfterViewInit {
+export class MenuComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() menuItems;
-  settings: AppSettings;
+  settings;
+  settingsSubscription: Subscription;
   constructor(
     private menuService: MenuService,
     private router: Router,
     private elementRef: ElementRef,
-    public appSettingsService: AppSettingsService
+    private store: Store<any>
   ) {
-    this.settings = this.appSettingsService.settings;
+    this.settingsSubscription = this.store
+      .select(getAppSettings)
+      .subscribe(settings => (this.settings = settings));
+
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         window.scrollTo(0, 0);
         const activeLink = this.menuService.getActiveLink(this.menuItems);
         this.menuService.setActiveLink(this.menuItems, activeLink);
-        // jQuery('.tooltip').tooltip('hide');
         if (window.innerWidth <= 768) {
-          this.settings.theme.showMenu = false;
+          this.store.dispatch(new HideMenu());
         }
       }
     });
@@ -50,5 +56,9 @@ export class MenuComponent implements OnInit, AfterViewInit {
     this.menuService.showActiveSubMenu(this.menuItems);
     const activeLink = this.menuService.getActiveLink(this.menuItems);
     this.menuService.setActiveLink(this.menuItems, activeLink);
+  }
+
+  ngOnDestroy() {
+    this.settingsSubscription.unsubscribe();
   }
 }
