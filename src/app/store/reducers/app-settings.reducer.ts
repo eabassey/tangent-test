@@ -1,13 +1,14 @@
 import * as appSettingsActions from '../actions/app-settings.actions';
 
 export interface State {
-  showMenu: boolean;
-  skin: string;
+  theme: { showMenu: boolean; skin: string };
 }
 
 const initialState: State = {
-  showMenu: true,
-  skin: 'grey'
+  theme: {
+    showMenu: true,
+    skin: 'grey'
+  }
 };
 
 export function reducer(
@@ -18,20 +19,20 @@ export function reducer(
     case appSettingsActions.SHOW_MENU: {
       return {
         ...state,
-        showMenu: true
+        theme: { ...state.theme, showMenu: true }
       };
     }
     case appSettingsActions.HIDE_MENU: {
       return {
         ...state,
-        showMenu: false
+        theme: { ...state.theme, showMenu: false }
       };
     }
     case appSettingsActions.SET_SKIN: {
       const skin = action.payload;
       return {
         ...state,
-        skin
+        theme: { ...state.theme, skin }
       };
     }
     default:

@@ -13,13 +13,14 @@ import { AppComponent } from './app.component';
 import { ErrorsModule } from './errors/errors.module';
 import { AppSettingsService } from './app-settings.service';
 import { AuthModule } from './auth/auth.module';
+import { reducers } from './store/reducers';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot(reducers),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 10 }),
     AuthModule,
