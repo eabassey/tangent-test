@@ -10,6 +10,8 @@ export interface State {
   countOfAllEmployees: number;
   countOfStaffEmployees: number;
   numberOfBirthdaysThisMonth: number;
+
+  drillThroughEmployees: any;
 }
 
 const initialState: State = {
@@ -18,7 +20,8 @@ const initialState: State = {
   employeesWithBirthdayThisMonth: [],
   countOfAllEmployees: 0,
   countOfStaffEmployees: 0,
-  numberOfBirthdaysThisMonth: 0
+  numberOfBirthdaysThisMonth: 0,
+  drillThroughEmployees: []
 };
 
 export function reducer(
@@ -51,6 +54,24 @@ export function reducer(
         ...state,
         employeesWithBirthdayThisMonth,
         numberOfBirthdaysThisMonth
+      };
+    }
+    case topPanelActions.DRILL_TO_ALL_EMPLOYEES: {
+      return {
+        ...state,
+        drillThroughEmployees: state.allEmployees
+      };
+    }
+    case topPanelActions.DRILL_TO_STAFF_EMPLOYEES: {
+      return {
+        ...state,
+        drillThroughEmployees: state.staffEmployees
+      };
+    }
+    case topPanelActions.DRILL_TO_BIRTHDAY_EMPLOYEES: {
+      return {
+        ...state,
+        drillThroughEmployees: state.employeesWithBirthdayThisMonth
       };
     }
     default:

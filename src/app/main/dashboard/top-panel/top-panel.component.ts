@@ -3,9 +3,18 @@ import { Store } from '@ngrx/store';
 import {
   geAllEmployeesCount,
   geStaffEmployeesCount,
-  geBirthdayEmployeesCount
+  geBirthdayEmployeesCount,
+  getDrillThroughFromTopPanel
 } from '../store/selectors/top-panel.selectors';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs/Observable';
+import { race } from 'rxjs/observable/race';
+import {
+  DrillToAllEmployees,
+  DrillToStaffEmployees,
+  DrillToBirthdayEmployees
+} from '../store/actions/top-panel.actions';
+import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-top-panel',
@@ -22,8 +31,18 @@ export class TopPanelComponent implements OnInit {
 
   birthDaysThisMonth$;
   birthDaysThisMonthBgColor = { domain: ['#606060'] };
-  constructor(private store: Store<any>) {}
+
+  drillThroughEmployees$: Observable<any>;
+  drillThroughTitle: string;
+  public modalRef: NgbModalRef;
+  public p: any;
+
+  constructor(private store: Store<any>, public modalService: NgbModal) {}
   ngOnInit() {
+    this.drillThroughEmployees$ = this.store.select(
+      getDrillThroughFromTopPanel
+    );
+
     this.allEmployees$ = this.store
       .select(geAllEmployeesCount)
       .pipe(map(num => [{ name: 'All Employees', value: num }]));
@@ -50,11 +69,33 @@ export class TopPanelComponent implements OnInit {
     }
   }
 
+  public openModal(modalContent) {
+    this.modalRef = this.modalService.open(modalContent, { container: '.app' });
+  }
+
+  public closeModal() {
+    this.modalRef.close();
+  }
+
   onSelect(event) {
     console.log(event);
   }
 
-  displayAllEmployees() {
-    console.log('event');
+  displayAllEmployees(modalContent, event) {
+    this.drillThroughTitle = event.name;
+    this.store.dispatch(new DrillToAllEmployees());
+    this.openModal(modalContent);
+  }
+
+  displayStaffEmployees(modalContent, event) {
+    this.drillThroughTitle = event.name;
+    this.store.dispatch(new DrillToStaffEmployees());
+    this.openModal(modalContent);
+  }
+
+  displayBirthdayEmployees(modalContent, event) {
+    this.drillThroughTitle = event.name;
+    this.store.dispatch(new DrillToBirthdayEmployees());
+    this.openModal(modalContent);
   }
 }

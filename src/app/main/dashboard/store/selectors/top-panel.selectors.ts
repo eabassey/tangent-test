@@ -29,3 +29,8 @@ export const geBirthdayEmployeesCount = createSelector(
   topPanelState,
   state => state.numberOfBirthdaysThisMonth
 );
+
+export const getDrillThroughFromTopPanel = createSelector(
+  topPanelState,
+  state => state.drillThroughEmployees
+);
