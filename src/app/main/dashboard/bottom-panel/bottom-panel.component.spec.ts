@@ -1,25 +1,22 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import test, { App, expectThat, Fixture } from 'ng-test-runner';
+import { TestBed } from '@angular/core/testing';
+import { DashboardModule } from '../dashboard.module';
 import { BottomPanelComponent } from './bottom-panel.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-describe('BottomPanelComponent', () => {
-  let component: BottomPanelComponent;
-  let fixture: ComponentFixture<BottomPanelComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ BottomPanelComponent ]
-    })
-    .compileComponents();
-  }));
+describe('BottomPanel Component', () => {
+  let app: App;
+  let comp: Fixture;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BottomPanelComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    TestBed.configureTestingModule({
+      imports: [BrowserAnimationsModule]
+    });
+    app = test(DashboardModule);
+    comp = app.run(BottomPanelComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should exist', () => {
+    comp.verify(expectThat.element('div.row').exists());
   });
 });

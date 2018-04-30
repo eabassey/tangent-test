@@ -1,25 +1,28 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import test, { App, expectThat, Fixture } from 'ng-test-runner';
 import { BreadcrumbComponent } from './breadcrumb.component';
+import { SharedModule } from '../../shared.module';
+import { TestBed } from '@angular/core/testing';
+import { AppSettingsService } from '../../../app-settings.service';
+import { RouterTestingModule } from '@angular/router/testing';
 
-describe('BreadcrumbComponent', () => {
-  let component: BreadcrumbComponent;
-  let fixture: ComponentFixture<BreadcrumbComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ BreadcrumbComponent ]
-    })
-    .compileComponents();
-  }));
+describe('Breadcrumb Component', () => {
+  let app: App;
+  let comp: Fixture;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BreadcrumbComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
+      providers: [AppSettingsService]
+    });
+    app = test(SharedModule);
+    comp = app.run(BreadcrumbComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should have an ordered list element with a class of breadcrumb', () => {
+    comp.verify(expectThat.element('ol.breadcrumb').exists());
+  });
+
+  it('should have first link as Home', () => {
+    comp.verify(expectThat.textOf('li:first-child').isEqualTo('Home'));
   });
 });

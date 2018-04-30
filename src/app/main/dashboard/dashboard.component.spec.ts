@@ -1,25 +1,26 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import test, { App, expectThat, Fixture } from 'ng-test-runner';
+import { TestBed } from '@angular/core/testing';
+import { DashboardModule } from './dashboard.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard.component';
 
-describe('DashboardComponent', () => {
-  let component: DashboardComponent;
-  let fixture: ComponentFixture<DashboardComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ DashboardComponent ]
-    })
-    .compileComponents();
-  }));
+describe('Dashboard Component', () => {
+  let app: App;
+  let comp: Fixture;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    TestBed.configureTestingModule({
+      imports: [BrowserAnimationsModule]
+    });
+    app = test(DashboardModule);
+    comp = app.run(DashboardComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should have the top-panel component as child', () => {
+    comp.verify(expectThat.element('app-top-panel').exists());
+  });
+
+  it('should have the bottom-panel component as child', () => {
+    comp.verify(expectThat.element('app-bottom-panel').exists());
   });
 });

@@ -1,25 +1,17 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import test, { App, expectThat, Fixture } from 'ng-test-runner';
 import { FooterComponent } from './footer.component';
+import { SharedModule } from '../../shared.module';
 
-describe('FooterComponent', () => {
-  let component: FooterComponent;
-  let fixture: ComponentFixture<FooterComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ FooterComponent ]
-    })
-    .compileComponents();
-  }));
+describe('Footer Component', () => {
+  let app: App;
+  let comp: Fixture;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FooterComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    app = test(SharedModule);
+    comp = app.run(FooterComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should have a div with an app-footer class', () => {
+    comp.verify(expectThat.element('div.app-footer').exists());
   });
 });
