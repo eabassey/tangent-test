@@ -41,7 +41,7 @@
             <td class="align-middle text-truncate">{{employee.race | race }}</td>
             <td class="align-middle">
               <div class="btn-group" role="group">
-                <button class="btn btn-secondary btn-sm">
+                <button class="btn btn-secondary btn-sm" (click)="openModal(modalContent, employee)">
                   <i class="fa fa-eye"></i>
                 </button>
               </div>
@@ -60,3 +60,86 @@
     </div>
   </div>
 </div>
+
+<!-- VIEW DETAILS MODAL-->
+<ng-template #modalContent>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-12 vertical-tabs">
+        <form class="row px-3">
+          <div class="col-12 border-0">
+            <div>
+              <h5>Work Details</h5>
+              <div class="form-group">
+                <label class="text-gray">First Name:</label>
+                <input class="form-control" readonly [value]="employee.user.first_name" type="text">
+              </div>
+              <div class="form-group">
+                <label class="text-gray">Last Name:</label>
+                <input class="form-control" readonly [value]="employee.user.last_name" type="text">
+              </div>
+              <div class="form-group">
+                <label class="text-gray">Position:</label>
+                <input class="form-control" readonly value="{{employee.position.level}} {{employee.position.name}}" type="text">
+              </div>
+              <div class="form-group">
+                <label class="text-gray">Years Worked</label>
+                <input class="form-control" readonly [value]="employee.years_worked" type="text">
+              </div>
+              <div class="form-group">
+                <label class="text-gray">Is Active:</label>
+                <input class="form-control" readonly [value]="employee.user.is_active" type="text">
+              </div>
+              <div class="form-group">
+                <label class="text-gray">Is Staff:</label>
+                <input class="form-control" readonly [value]="employee.user.is_staff" type="text">
+              </div>
+            </div>
+            <div>
+              <h5>Personal Details</h5>
+              <div class="form-group">
+                <label class="text-gray">Username:</label>
+                <input class="form-control" readonly [value]="employee.user.username" type="text">
+              </div>
+              <div class="form-group">
+                <label class="text-gray">Email:</label>
+                <input class="form-control" readonly [value]="employee.user.email" type="text">
+              </div>
+              <div class="form-group">
+                <label class="text-gray">Gender</label>
+                <input class="form-control" readonly [value]="employee.gender | gender" type="text">
+              </div>
+              <div class="form-group">
+                <label class="text-gray">Phone Number:</label>
+                <input class="form-control" readonly [value]="employee.phone_number" type="text">
+              </div>
+              <div class="form-group">
+                <label class="text-gray">Github User:</label>
+                <input class="form-control" readonly [value]="employee.github_user" type="text">
+              </div>
+              <div class="form-group">
+                <label class="text-gray">Birth Date:</label>
+                <input class="form-control" readonly [value]="employee.birth_date | date" type="text">
+              </div>
+              <div class="form-group">
+                <label class="text-gray">Days to Birthday</label>
+                <input class="form-control" readonly [value]="employee.days_to_birthday" type="text">
+              </div>
+              <div class="form-group">
+                <label class="text-gray">Age:</label>
+                <input class="form-control" readonly [value]="employee.age" type="text">
+              </div>
+              <div class="form-group">
+                <label class="text-gray">Race:</label>
+                <input class="form-control" readonly [value]="employee.race | race" type="text">
+              </div>
+            </div>
+          </div>
+          <div class="col-12 bg-white text-center py-1">
+            <button type="button" class="btn btn-danger" (click)="closeModal()">Close</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</ng-template>

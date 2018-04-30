@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmployeesComponent } from './employees.component';
 import { EmployeesListComponent } from './employees-list/employees-list.component';
 
@@ -25,6 +25,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     HttpClientModule,
     StoreModule.forFeature('employees', reducers),
     EffectsModule.forFeature([EmployeesEffects]),
+    ReactiveFormsModule,
     NgxSpinnerModule,
     FormsModule,
     NgbModule,
