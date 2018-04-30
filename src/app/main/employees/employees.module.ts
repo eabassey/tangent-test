@@ -15,7 +15,6 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers } from './store/reducers';
 import { EmployeesEffects } from './store/effects/employees.effects';
-import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [EmployeesComponent, EmployeesListComponent],
@@ -26,7 +25,6 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     StoreModule.forFeature('employees', reducers),
     EffectsModule.forFeature([EmployeesEffects]),
     ReactiveFormsModule,
-    NgxSpinnerModule,
     FormsModule,
     NgbModule,
     NgxPaginationModule,

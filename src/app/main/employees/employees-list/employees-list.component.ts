@@ -3,7 +3,6 @@ import { Store } from '@ngrx/store';
 import * as employeesActions from '../store/actions/employees.actions';
 import { Observable } from 'rxjs/Observable';
 import { getEmployees } from '../store/selectors/employees.selectors';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { Subscription } from 'rxjs/Subscription';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup } from '@angular/forms';
@@ -25,19 +24,16 @@ export class EmployeesListComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store<any>,
-    private spinner: NgxSpinnerService,
     public modalService: NgbModal
   ) {
     store.dispatch(new employeesActions.GetEmployees());
   }
 
   ngOnInit() {
-    this.spinner.show();
     this.employeesSubscription = this.store
       .select(getEmployees)
       .subscribe(employees => {
         this.employees = employees;
-        this.spinner.hide();
       });
   }
 
