@@ -6,6 +6,8 @@ import { getEmployees } from '../store/selectors/employees.selectors';
 import { Subscription } from 'rxjs/Subscription';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup } from '@angular/forms';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-employees-list',
@@ -24,16 +26,20 @@ export class EmployeesListComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store<any>,
-    public modalService: NgbModal
+    public modalService: NgbModal,
+    public spinner: Ng4LoadingSpinnerService
   ) {
     store.dispatch(new employeesActions.GetEmployees());
   }
 
   ngOnInit() {
+    this.spinner.show();
     this.employeesSubscription = this.store
       .select(getEmployees)
+      .pipe(delay(1500))
       .subscribe(employees => {
         this.employees = employees;
+        this.spinner.hide();
       });
   }
 
