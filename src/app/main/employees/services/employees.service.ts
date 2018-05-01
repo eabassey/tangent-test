@@ -11,6 +11,7 @@ export class EmployeesService {
     private authService: AuthService
   ) {}
 
+  /** Retrieving list of employees from backend server */
   getEmployees(): Observable<any> {
     const headers = this.authService.headers;
     return this.httpClient.get<any>(environment.urls.employees_api_endpoint, {
