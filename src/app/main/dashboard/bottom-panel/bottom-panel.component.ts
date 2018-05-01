@@ -21,13 +21,14 @@ import {
   DrillToEmployeesByGender
 } from '../store/actions/bottom-panel.actions';
 
+/** Bottom area of the main dashboard */
 @Component({
   selector: 'app-bottom-panel',
   templateUrl: './bottom-panel.component.html',
   styleUrls: ['./bottom-panel.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class BottomPanelComponent implements OnInit, OnDestroy {
+export class BottomPanelComponent implements OnInit {
   public colorScheme = {
     domain: ['#FFFFFF']
   };
@@ -69,6 +70,7 @@ export class BottomPanelComponent implements OnInit, OnDestroy {
     );
   }
 
+  /** Handler for drill through in employee by race */
   displayRaceDetail(modalContent, event) {
     this.drillThroughTitle = event.name;
     this.store.dispatch(
@@ -77,6 +79,7 @@ export class BottomPanelComponent implements OnInit, OnDestroy {
     this.openModal(modalContent);
   }
 
+  /** Handler for drill through in employee by level */
   displayLevelDetail(modalContent, event) {
     console.log(event);
     this.drillThroughTitle = event.name;
@@ -84,6 +87,7 @@ export class BottomPanelComponent implements OnInit, OnDestroy {
     this.openModal(modalContent);
   }
 
+  /** Handler for drill through in employee by status */
   displayStatusDetail(modalContent, event) {
     console.log(event);
     this.drillThroughTitle = event.name;
@@ -91,6 +95,7 @@ export class BottomPanelComponent implements OnInit, OnDestroy {
     this.openModal(modalContent);
   }
 
+  /** Handler for drill through in employee by gender */
   displayGenderDetail(modalContent, event) {
     this.drillThroughTitle = event.name;
     this.store.dispatch(
@@ -99,17 +104,13 @@ export class BottomPanelComponent implements OnInit, OnDestroy {
     this.openModal(modalContent);
   }
 
+  /** Opening the modal for drill through */
   public openModal(modalContent) {
     this.modalRef = this.modalService.open(modalContent, { container: '.app' });
   }
 
+  /** Closing the modal window manually */
   public closeModal() {
     this.modalRef.close();
   }
-
-  public onSelect(event) {
-    console.log(event);
-  }
-
-  ngOnDestroy() {}
 }

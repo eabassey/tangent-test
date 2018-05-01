@@ -16,6 +16,7 @@ import {
 } from '../store/actions/top-panel.actions';
 import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+/** Top part of the main dashboard */
 @Component({
   selector: 'app-top-panel',
   templateUrl: './top-panel.component.html',
@@ -56,6 +57,7 @@ export class TopPanelComponent implements OnInit {
       .pipe(map(num => [{ name: 'Birthdays This Month', value: num }]));
   }
 
+  /** Formatter for icons on the dashboard */
   infoLabelFormat(c): string {
     switch (c.data.name) {
       case 'All Employees':
@@ -69,30 +71,31 @@ export class TopPanelComponent implements OnInit {
     }
   }
 
+  /** Opening the modal */
   public openModal(modalContent) {
     this.modalRef = this.modalService.open(modalContent, { container: '.app' });
   }
 
+  /** Closing of the modal manually */
   public closeModal() {
     this.modalRef.close();
   }
 
-  onSelect(event) {
-    console.log(event);
-  }
-
+  /** Handler for drill through on the all employees item */
   displayAllEmployees(modalContent, event) {
     this.drillThroughTitle = event.name;
     this.store.dispatch(new DrillToAllEmployees());
     this.openModal(modalContent);
   }
 
+  /** Handler for drill through on the staff employees item */
   displayStaffEmployees(modalContent, event) {
     this.drillThroughTitle = event.name;
     this.store.dispatch(new DrillToStaffEmployees());
     this.openModal(modalContent);
   }
 
+  /** Handler for drill through on the birthday due employees item */
   displayBirthdayEmployees(modalContent, event) {
     this.drillThroughTitle = event.name;
     this.store.dispatch(new DrillToBirthdayEmployees());

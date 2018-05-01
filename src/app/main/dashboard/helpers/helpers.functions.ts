@@ -1,4 +1,4 @@
-// Helper Function
+/** Helper function for transforming short names to full names */
 export const transformToFullDescription = obj => {
   switch (obj.name) {
     case raceMap.BlackAfrican.Short:
@@ -24,6 +24,7 @@ export const transformToFullDescription = obj => {
   }
 };
 
+/** Helper function for transforming full names to short names */
 export const transformToShortDescription = obj => {
   switch (obj.name) {
     case raceMap.BlackAfrican.Full:
