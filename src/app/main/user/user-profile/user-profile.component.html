@@ -274,7 +274,7 @@
                   <div class="form-group row text-sm-right">
                     <label class="col-sm-3 form-control-label mt-1">Type:</label>
                     <div class="col-sm-9">
-                      <input type="text" readonly [value]="review.type" class="form-control">
+                      <input type="text" readonly [value]="review.type | review" class="form-control">
                     </div>
                   </div>
                 </form>
