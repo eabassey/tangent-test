@@ -39,11 +39,13 @@ export class LoginComponent implements OnInit, OnDestroy {
       .subscribe(msg => (this.errorMessage = msg));
   }
 
+  /** Sending form values to the server */
   public onSubmit(values: { username: string; password: string }): void {
     this.store.dispatch(new fromLoginActions.Login(values));
     this.form.reset();
   }
 
+  /** Refreshing the login form for a good start */
   retryLogin() {
     window.location.reload();
   }

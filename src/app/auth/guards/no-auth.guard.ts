@@ -11,6 +11,9 @@ import {
   RouterStateSnapshot
 } from '@angular/router';
 
+/** A guard to prevent authenticated users from hitting the some pages such as login,
+ * since they are already authenticated.
+ */
 @Injectable()
 export class NoAuthGuard implements CanActivate {
   constructor(
