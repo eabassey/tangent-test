@@ -4,12 +4,31 @@ export interface State {
   employeesByRaceCount: any[];
   employeesByRaceValues: { [id: string]: any };
 
+  employeesByLevelCount: any[];
+  employeesByLevelValues: { [id: string]: any };
+
+  employeesByStatusCount: any[];
+  employeesByStatusValues: { [id: string]: any };
+
+  employeesByGenderCount: any[];
+  employeesByGenderValues: { [id: string]: any };
+
   drillThroughEmployees: any;
 }
 
 const initialState: State = {
   employeesByRaceCount: [],
   employeesByRaceValues: {},
+
+  employeesByLevelCount: [],
+  employeesByLevelValues: {},
+
+  employeesByStatusCount: [],
+  employeesByStatusValues: {},
+
+  employeesByGenderCount: [],
+  employeesByGenderValues: {},
+
   drillThroughEmployees: []
 };
 
@@ -28,8 +47,55 @@ export function reducer(
     }
     case bottomPanelActions.DRILL_TO_EMPLOYEES_BY_RACE: {
       const raceId = action.payload;
-      console.log(raceId);
       const values = state.employeesByRaceValues[raceId];
+      return {
+        ...state,
+        drillThroughEmployees: values
+      };
+    }
+    case bottomPanelActions.EMPLOYEES_BY_LEVEL: {
+      const { counts, values } = action.payload;
+      return {
+        ...state,
+        employeesByLevelCount: counts,
+        employeesByLevelValues: values
+      };
+    }
+    case bottomPanelActions.DRILL_TO_EMPLOYEES_BY_LEVEL: {
+      const levelId = action.payload;
+      const values = state.employeesByLevelValues[levelId];
+      return {
+        ...state,
+        drillThroughEmployees: values
+      };
+    }
+    case bottomPanelActions.EMPLOYEES_BY_STATUS: {
+      const { counts, values } = action.payload;
+      return {
+        ...state,
+        employeesByStatusCount: counts,
+        employeesByStatusValues: values
+      };
+    }
+    case bottomPanelActions.DRILL_TO_EMPLOYEES_BY_STATUS: {
+      const statusId = action.payload;
+      const values = state.employeesByStatusValues[statusId];
+      return {
+        ...state,
+        drillThroughEmployees: values
+      };
+    }
+    case bottomPanelActions.EMPLOYEES_BY_GENDER: {
+      const { counts, values } = action.payload;
+      return {
+        ...state,
+        employeesByGenderCount: counts,
+        employeesByGenderValues: values
+      };
+    }
+    case bottomPanelActions.DRILL_TO_EMPLOYEES_BY_GENDER: {
+      const genderId = action.payload;
+      const values = state.employeesByGenderValues[genderId];
       return {
         ...state,
         drillThroughEmployees: values

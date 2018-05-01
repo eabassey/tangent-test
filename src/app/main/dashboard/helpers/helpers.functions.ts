@@ -1,5 +1,5 @@
 // Helper Function
-export const transformRaceToFullDescription = obj => {
+export const transformToFullDescription = obj => {
   switch (obj.name) {
     case raceMap.BlackAfrican.Short:
       return { name: raceMap.BlackAfrican.Full, value: obj.value };
@@ -15,6 +15,12 @@ export const transformRaceToFullDescription = obj => {
 
     case raceMap.NonDominant.Short:
       return { name: raceMap.NonDominant.Full, value: obj.value };
+
+    case genderMap.Male.Short:
+      return { name: genderMap.Male.Full, value: obj.value };
+
+    case genderMap.Female.Short:
+      return { name: genderMap.Female.Full, value: obj.value };
   }
 };
 
@@ -34,6 +40,12 @@ export const transformToShortDescription = obj => {
 
     case raceMap.NonDominant.Full:
       return raceMap.NonDominant.Short;
+
+    case genderMap.Male.Full:
+      return genderMap.Male.Short;
+
+    case genderMap.Female.Full:
+      return genderMap.Female.Short;
   }
 };
 
@@ -43,4 +55,9 @@ const raceMap = {
   Indian: { Short: 'I', Full: 'Indian' },
   Coloured: { Short: 'C', Full: 'Coloured' },
   NonDominant: { Short: 'N', Full: 'Non Dominant' }
+};
+
+const genderMap = {
+  Male: { Short: 'M', Full: 'Male' },
+  Female: { Short: 'F', Full: 'Female' }
 };

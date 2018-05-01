@@ -2,16 +2,24 @@ import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
   getEmployeesByRaceCount,
-  getDrillThroughFromBottomPanel
+  getDrillThroughFromBottomPanel,
+  getEmployeesByLevelCount,
+  getEmployeesByStatusCount,
+  getEmployeesByGenderCount
 } from '../store/selectors/bottom-panel.selectors';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 import {
-  transformRaceToFullDescription,
+  transformToFullDescription,
   transformToShortDescription
 } from '../helpers/helpers.functions';
 import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { DrillToEmployeesByRace } from '../store/actions/bottom-panel.actions';
+import {
+  DrillToEmployeesByRace,
+  DrillToEmployeesByLevel,
+  DrillToEmployeesByStatus,
+  DrillToEmployeesByGender
+} from '../store/actions/bottom-panel.actions';
 
 @Component({
   selector: 'app-bottom-panel',
@@ -29,10 +37,9 @@ export class BottomPanelComponent implements OnInit, OnDestroy {
   view = [700, 300];
 
   race$: Observable<any>;
-
-  gender = [{ name: 'Male', value: 12 }, { name: 'Female', value: 21 }];
-  status = [{ name: 'Active', value: 31 }, { name: 'Inactive', value: 11 }];
-  level = [{ name: 'Senior', value: 31 }, { name: 'Junior', value: 21 }];
+  level$: Observable<any>;
+  status$: Observable<any>;
+  gender$: Observable<any>;
 
   drillThroughEmployees$: Observable<any>;
   drillThroughTitle: string;
@@ -47,7 +54,17 @@ export class BottomPanelComponent implements OnInit, OnDestroy {
 
     this.race$ = this.store.select(getEmployeesByRaceCount).pipe(
       map(arr => {
-        return arr.map(transformRaceToFullDescription);
+        return arr.map(transformToFullDescription);
+      })
+    );
+
+    this.level$ = this.store.select(getEmployeesByLevelCount);
+
+    this.status$ = this.store.select(getEmployeesByStatusCount);
+
+    this.gender$ = this.store.select(getEmployeesByGenderCount).pipe(
+      map(arr => {
+        return arr.map(transformToFullDescription);
       })
     );
   }
@@ -56,6 +73,28 @@ export class BottomPanelComponent implements OnInit, OnDestroy {
     this.drillThroughTitle = event.name;
     this.store.dispatch(
       new DrillToEmployeesByRace(transformToShortDescription(event))
+    );
+    this.openModal(modalContent);
+  }
+
+  displayLevelDetail(modalContent, event) {
+    console.log(event);
+    this.drillThroughTitle = event.name;
+    this.store.dispatch(new DrillToEmployeesByLevel(event.name));
+    this.openModal(modalContent);
+  }
+
+  displayStatusDetail(modalContent, event) {
+    console.log(event);
+    this.drillThroughTitle = event.name;
+    this.store.dispatch(new DrillToEmployeesByStatus(event.name));
+    this.openModal(modalContent);
+  }
+
+  displayGenderDetail(modalContent, event) {
+    this.drillThroughTitle = event.name;
+    this.store.dispatch(
+      new DrillToEmployeesByGender(transformToShortDescription(event))
     );
     this.openModal(modalContent);
   }

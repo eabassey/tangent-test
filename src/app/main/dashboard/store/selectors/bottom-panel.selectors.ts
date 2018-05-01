@@ -15,6 +15,21 @@ export const getEmployeesByRaceCount = createSelector(
   state => state.employeesByRaceCount
 );
 
+export const getEmployeesByLevelCount = createSelector(
+  bottomPanelState,
+  state => state.employeesByLevelCount
+);
+
+export const getEmployeesByStatusCount = createSelector(
+  bottomPanelState,
+  state => state.employeesByStatusCount
+);
+
+export const getEmployeesByGenderCount = createSelector(
+  bottomPanelState,
+  state => state.employeesByGenderCount
+);
+
 export const getEmployeesByRaceValues = createSelector(
   bottomPanelState,
   state => state.employeesByRaceValues
