@@ -1,36 +1,6 @@
 <div class="row mb-3">
   <div class="row">
-    <div class="col-xl-6 col-lg-6 col-md-6 mb-4">
-      <div class="card border-0 bg-info">
-        <div class="card-header border-0 transparent text-white d-flex justify-content-between">
-          <span>Active vs Inactive Employees</span>
-          <span>Diff - 16%</span>
-        </div>
-        <div class="card-body p-0">
-          <div class="w-100 h-100p">
-            <ngx-charts-bar-vertical [scheme]="colorScheme" [animations]="animations" [results]="status" (select)="onSelect($event)">
-            </ngx-charts-bar-vertical>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-xl-6 col-lg-6 col-md-6 mb-4">
-      <div class="card border-0 bg-warning">
-        <div class="card-header border-0 transparent text-white d-flex justify-content-between">
-          <span>Employees By Gender</span>
-          <span>Diff - 14%</span>
-        </div>
-        <div class="card-body p-0">
-          <div class="w-100 h-100p">
-            <ngx-charts-bar-vertical [scheme]="colorScheme" [animations]="animations" [results]="gender" (select)="onSelect($event)">
-            </ngx-charts-bar-vertical>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xl-6 col-lg-6 col-md-6 mb-4">
+    <div class="col-xl-4 col-lg-6 col-md-6 mb-4">
       <div class="card border-0 bg-warning">
         <div class="card-header border-0 transparent text-white d-flex justify-content-between">
           <span>Employees By Race</span>
@@ -44,7 +14,7 @@
         </div>
       </div>
     </div>
-    <div class="col-xl-6 col-lg-6 col-md-6 mb-4">
+    <div class="col-xl-4 col-lg-6 col-md-6 mb-4">
       <div class="card border-0 bg-warning">
         <div class="card-header border-0 transparent text-white d-flex justify-content-between">
           <span>Employees By Level</span>
@@ -54,6 +24,34 @@
             <ngx-charts-advanced-pie-chart [view]="view" [gradient]="gradient" scheme="vivid" [animations]="animations" [results]="level"
               (select)="onSelect($event)">
             </ngx-charts-advanced-pie-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-2 col-lg-6 col-md-6 mb-4">
+      <div class="card border-0 bg-info">
+        <div class="card-header border-0 transparent text-white d-flex justify-content-between">
+          <span>Active vs Inactive Employees</span>
+          <span>Diff - 16%</span>
+        </div>
+        <div class="card-body p-0">
+          <div class="w-100 h-100p">
+            <ngx-charts-bar-vertical [scheme]="colorScheme" [animations]="animations" [results]="status" (select)="onSelect($event)">
+            </ngx-charts-bar-vertical>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-2 col-lg-6 col-md-6 mb-4">
+      <div class="card border-0 bg-warning">
+        <div class="card-header border-0 transparent text-white d-flex justify-content-between">
+          <span>Employees By Gender</span>
+          <span>Diff - 14%</span>
+        </div>
+        <div class="card-body p-0">
+          <div class="w-100 h-100p">
+            <ngx-charts-bar-vertical [scheme]="colorScheme" [animations]="animations" [results]="gender" (select)="onSelect($event)">
+            </ngx-charts-bar-vertical>
           </div>
         </div>
       </div>
