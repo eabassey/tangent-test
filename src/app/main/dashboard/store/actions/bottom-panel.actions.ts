@@ -7,6 +7,9 @@ export const EMPLOYEES_BY_STATUS =
 export const EMPLOYEES_BY_GENDER =
   '[Bottom Panel Dashboard] Employees By Gender';
 
+export const DRILL_TO_EMPLOYEES_BY_RACE =
+  '[Bottom Panel Dashboard] Drill To Employees By Race';
+
 export class EmployeesByRace implements Action {
   readonly type = EMPLOYEES_BY_RACE;
   constructor(public payload: { counts: any[]; values: any }) {}
@@ -24,8 +27,14 @@ export class EmployeesByGender implements Action {
   readonly type = EMPLOYEES_BY_GENDER;
 }
 
+export class DrillToEmployeesByRace implements Action {
+  readonly type = DRILL_TO_EMPLOYEES_BY_RACE;
+  constructor(public payload: string) {}
+}
+
 export type bottomPanelActions =
   | EmployeesByRace
   | EmployeesByLevel
   | EmployeesByStatus
-  | EmployeesByGender;
+  | EmployeesByGender
+  | DrillToEmployeesByRace;

@@ -3,11 +3,14 @@ import * as bottomPanelActions from '../actions/bottom-panel.actions';
 export interface State {
   employeesByRaceCount: any[];
   employeesByRaceValues: { [id: string]: any };
+
+  drillThroughEmployees: any;
 }
 
 const initialState: State = {
   employeesByRaceCount: [],
-  employeesByRaceValues: {}
+  employeesByRaceValues: {},
+  drillThroughEmployees: []
 };
 
 export function reducer(
@@ -21,6 +24,15 @@ export function reducer(
         ...state,
         employeesByRaceCount: counts,
         employeesByRaceValues: values
+      };
+    }
+    case bottomPanelActions.DRILL_TO_EMPLOYEES_BY_RACE: {
+      const raceId = action.payload;
+      console.log(raceId);
+      const values = state.employeesByRaceValues[raceId];
+      return {
+        ...state,
+        drillThroughEmployees: values
       };
     }
     default:
