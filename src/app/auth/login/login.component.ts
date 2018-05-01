@@ -41,6 +41,10 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   /** Sending form values to the server */
   public onSubmit(values: { username: string; password: string }): void {
+    if (!window.navigator.onLine) {
+      this.errorMessage = 'Please check your internet connection';
+      return;
+    }
     this.store.dispatch(new fromLoginActions.Login(values));
     this.form.reset();
   }
