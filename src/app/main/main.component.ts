@@ -10,6 +10,8 @@ import { Store } from '@ngrx/store';
 import { HideMenu, ShowMenu } from '../store/actions/app-settings.actions';
 import { getShowMenu } from '../store/selectors/app-settings.selectors';
 import { Subscription } from 'rxjs/Subscription';
+import { GetEmployees } from './employees/store/actions/employees.actions';
+import { GetUserProfile } from './user/store/actions/user-profile.actions';
 
 @Component({
   selector: 'app-main',
@@ -20,7 +22,10 @@ import { Subscription } from 'rxjs/Subscription';
 export class MainComponent implements OnInit, OnDestroy {
   public showMenu = false;
   settingsSubscription: Subscription;
-  constructor(public router: Router, private store: Store<any>) {}
+  constructor(public router: Router, private store: Store<any>) {
+    store.dispatch(new GetEmployees());
+    store.dispatch(new GetUserProfile());
+  }
 
   ngOnInit() {
     if (window.innerWidth <= 768) {

@@ -11,6 +11,7 @@ import {
   RouterStateSnapshot
 } from '@angular/router';
 
+/** A guard to prevent unauthenticated people from access certain areas of the application */
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(

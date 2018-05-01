@@ -27,6 +27,10 @@ export class LoginEffects {
     map(token => {
       this.spinner.hide();
       return new fromActions.UseTokenToAccess(token);
+    }),
+    catchError(error => {
+      this.spinner.hide();
+      return of(new fromActions.LoginFail(error));
     })
   );
 
@@ -44,6 +48,9 @@ export class LoginEffects {
         this.router.navigate(['/main']);
       }),
       map(userInfo => new fromActions.LoginSuccess(userInfo)),
-      catchError(error => of(new fromActions.LoginFail(error)))
+      catchError(error => {
+        this.spinner.hide();
+        return of(new fromActions.LoginFail(error));
+      })
     );
 }

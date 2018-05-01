@@ -1,58 +1,108 @@
-<div class="row mb-3">
-  <div class="col-xl-3 col-lg-6 col-md-6 mb-4">
-    <div class="card border-0 bg-info">
-      <div class="card-header border-0 transparent text-white d-flex justify-content-between">
-        <span>Active vs Inactive Employees</span>
-        <span>Diff - 16%</span>
-      </div>
-      <div class="card-body p-0">
-        <div class="w-100 h-100p">
-          <ngx-charts-bar-vertical [scheme]="colorScheme" [animations]="animations" [results]="status" (select)="onSelect($event)">
-          </ngx-charts-bar-vertical>
+<div class="row mb-3 dark-bg">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="card border-0 dark-bg">
+            <div class="card-header border-0 transparent text-white d-flex justify-content-between">
+              <span>Employees By Race</span>
+            </div>
+            <div class="card-body p-0">
+              <div class="w-100 h-100p">
+                <ngx-charts-advanced-pie-chart [view]="view" [gradient]="gradient" scheme="vivid" [animations]="animations" [results]="race$ | async"
+                  (select)="displayRaceDetail(modalContent, $event)">
+                </ngx-charts-advanced-pie-chart>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card border-0 dark-bg">
+            <div class="card-header border-0 transparent text-white d-flex justify-content-between">
+              <span>Employees By Status</span>
+            </div>
+            <div class="card-body p-0">
+              <div class="w-100 h-100p">
+                <ngx-charts-advanced-pie-chart [view]="view" [gradient]="gradient" scheme="forest" [animations]="animations" [results]="status$ | async"
+                  (select)="displayStatusDetail(modalContent, $event)">
+                </ngx-charts-advanced-pie-chart>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="col-xl-3 col-lg-6 col-md-6 mb-4">
-    <div class="card border-0 bg-warning">
-      <div class="card-header border-0 transparent text-white d-flex justify-content-between">
-        <span>Employees By Gender</span>
-        <span>Diff - 14%</span>
-      </div>
-      <div class="card-body p-0">
-        <div class="w-100 h-100p">
-          <ngx-charts-bar-vertical [scheme]="colorScheme" [animations]="animations" [results]="gender" (select)="onSelect($event)">
-          </ngx-charts-bar-vertical>
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card border-0 dark-bg">
+            <div class="card-header border-0 transparent text-white d-flex justify-content-between">
+              <span>Employees By Level</span>
+            </div>
+            <div class="card-body p-0">
+              <div class="w-100 h-100p">
+                <ngx-charts-pie-grid [view]="view" scheme="vivid" [animations]="animations" [results]="level$ | async" (select)="displayLevelDetail(modalContent, $event)">
+                </ngx-charts-pie-grid>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-6 col-lg-6 col-md-6 mb-4">
-    <div class="card border-0 bg-warning">
-      <div class="card-header border-0 transparent text-white d-flex justify-content-between">
-        <span>Employees By Race</span>
-      </div>
-      <div class="card-body p-0">
-        <div class="w-100 h-100p">
-          <ngx-charts-advanced-pie-chart [view]="view" [gradient]="gradient" scheme="vivid" [animations]="animations" [results]="race"
-            (select)="onSelect($event)">
-          </ngx-charts-advanced-pie-chart>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-6 col-lg-6 col-md-6 mb-4">
-    <div class="card border-0 bg-warning">
-      <div class="card-header border-0 transparent text-white d-flex justify-content-between">
-        <span>Employees By Level</span>
-      </div>
-      <div class="card-body p-0">
-        <div class="w-100 h-100p">
-          <ngx-charts-advanced-pie-chart [view]="view" [gradient]="gradient" scheme="vivid" [animations]="animations" [results]="level"
-            (select)="onSelect($event)">
-          </ngx-charts-advanced-pie-chart>
+        <div class="col-md-6">
+          <div class="card border-0 dark-bg">
+            <div class="card-header border-0 transparent text-white d-flex justify-content-between">
+              <span>Employees By Gender</span>
+            </div>
+            <div class="card-body p-0">
+              <div class="w-100 h-100p">
+                <ngx-charts-pie-grid [view]="view" scheme="fire" [animations]="animations" [results]="gender$ | async" (select)="displayGenderDetail(modalContent, $event)">
+                </ngx-charts-pie-grid>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
+<!-- DRILL THROUGH MODAL-->
+<ng-template #modalContent>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-12">
+        <h3>{{drillThroughTitle | uppercase}}</h3>
+        <div class="table-responsive bg-white box-shadow">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Full Name</th>
+                <th>Position</th>
+                <th>Email</th>
+                <th>Gender</th>
+                <th>Race</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let employee of drillThroughEmployees$ | async | paginate: { itemsPerPage: 6, currentPage: p }">
+                <td class="align-middle text-truncate">{{employee.user.first_name}} {{employee.user.last_name}}</td>
+                <td class="align-middle text-truncate">{{employee.position.level}} {{employee.position.name}}</td>
+                <td class="align-middle text-truncate">{{employee.email}}</td>
+                <td class="align-middle text-truncate">{{employee.gender | gender}}</td>
+                <td class="align-middle text-truncate">{{employee.race | race }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="bg-white text-center">
+          <pagination-controls autoHide="true" (pageChange)="p=$event" maxSize="3"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

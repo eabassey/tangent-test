@@ -12,6 +12,7 @@ export class UserService {
     private authService: AuthService
   ) {}
 
+  /** Retrieving profile information of currently logged in user from the server */
   getUserProfile(): Observable<any> {
     const headers = this.authService.headers;
     return this.httpClient.get<any>(
@@ -19,5 +20,4 @@ export class UserService {
       { headers }
     );
   }
-
 }

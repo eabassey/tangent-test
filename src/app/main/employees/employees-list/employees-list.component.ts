@@ -36,7 +36,6 @@ export class EmployeesListComponent implements OnInit, OnDestroy {
     this.spinner.show();
     this.employeesSubscription = this.store
       .select(getEmployees)
-      .pipe(delay(1500))
       .subscribe(employees => {
         this.employees = employees;
         this.spinner.hide();
