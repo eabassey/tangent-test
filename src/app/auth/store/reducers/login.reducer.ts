@@ -19,14 +19,16 @@ export function reducer(
       const userInfo = action.payload;
       return {
         ...state,
-        userInfo
+        userInfo,
+        error: null
       };
     }
     case fromActions.LOGIN_FAIL: {
       const error = action.payload;
       return {
         ...state,
-        error
+        error,
+        userInfo: null
       };
     }
     default:

@@ -9,15 +9,17 @@
 
         <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="text-left mt-4">
           <div class="form-group">
-            <input formControlName="username" class="form-control validation-field" placeholder="Username" type="text">
             <small class="text-danger" *ngIf="form.get('username').touched && form.get('username').hasError('required')">Username is required</small>
+            <input *ngIf="!errorMessage" formControlName="username" class="form-control validation-field" placeholder="Username" type="text">
           </div>
           <div class="form-group">
-            <input formControlName="password" class="form-control validation-field" placeholder="Password" type="password">
             <small class="text-danger" *ngIf="form.get('password').touched && form.get('password').hasError('required')">Password is required</small>
+            <input *ngIf="!errorMessage" formControlName="password" class="form-control validation-field" placeholder="Password" type="password">
           </div>
           <div class="form-group">
-            <button [disabled]="!form.valid" class="btn btn-block" type="submit">Log in</button>
+            <small *ngIf="errorMessage" class="text-danger">{{errorMessage}}</small>
+            <button *ngIf="!errorMessage" class="btn btn-block" [disabled]="!form.valid" type="submit">Log in</button>
+            <button *ngIf="errorMessage" class="btn btn-block" (click)="retryLogin()">Try Again</button>
           </div>
         </form>
       </div>
